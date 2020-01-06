@@ -1,0 +1,35 @@
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="../img/ava.jpg" alt="avatar" class="img-fluid"></div>
+            <div class="title">
+              <h4>Hi, Hoàng</h4>
+              <p>Administrator</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus-->
+          <span class="heading">Main</span>
+          <ul class="list-unstyled">
+            <li<% if (page_name === '/admin') { %>class="current" <% } %>><a href="/admin"><i class="fas fa-home"></i> Home </a></li>
+            <li<% if (page_name === '/profile') { %>class="current" <% } %>><a href="/admin/profile"><i class="fas fa-home"></i>Profile</a></li>
+            <li<% if (page_name === '/login') { %>class="current" <% } %>><a href="/admin/login"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout </a></li>
+          </ul>
+          <span class="heading">Manage</span>
+          <ul class="list-unstyled">
+            <li <% if (page_name === '/category') { %>class="active" <% } %> ><a href="/admin/category"><i class="fas fa-list"></i>&nbsp;Manage Category</a></li>
+            <li<% if (page_name === 'product') { %>class="current" <% } %>><a href="/admin/product"><i class="fas fa-box"></i>&nbsp;Manage Product</a></li>
+            <li><a href="#user" aria-expanded="true" data-toggle="collapse"><i class="fas fa-users"></i>Manage User</a>
+              <ul id="user" class="collapse list-unstyled">
+                <li<% if (page_name === '/view-user') { %>class="current" <% } %>><a href="/admin/view-user">View all users</a></li>
+                <li<% if (page_name === '/manage-request') { %>class="current" <% } %>><a href="/admin/view-request">Manage seller request</a></li>
+                <li<% if (page_name === '/seller') { %>class="current" <% } %>><a href="/admin/seller-">Manage seller</a></li>
+              </ul>
+            </li>
+          </ul><span class="heading">Overview</span>
+          <ul class="list-unstyled">
+            <li> <a href="add-manager.html"><i class="fas fa-user-plus"></i>Add manager</a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Announcement</a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Demo </a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Demo </a></li>
+          </ul>
+        </nav>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Hello Auction</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- Header -->
+    <% include ../partial-layout/header%>
+    <header class="masthead">
+        <div class="container">
+            <% include ../partial-layout/search-bar%>            
+            <div class="row">
+                <div class="col-lg-6 intro-text">
+                    <div class="intro-lead-in">Welcome To Our Auction!</div>
+                    <div class="intro-heading text-uppercase">Find what you love and make it yours! </div>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">See More</a>
+                </div>
+                <div class="col-lg-6 intro-text">
+                    <div id="sign-up">
+                        <h2 class="sign-heading text-uppercase">DO YOU WANT TO PARTICIPATE IN AN AUCTION ?</h2>
+                        <h3 class="text-muted">Join us to sell and buy products at the best prices</h3>
+                        <form id="contactForm" name="signUp" novalidate="novalidate">
+                            <div class="form-group">
+                                <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="password" type="tel" placeholder="Your Password *" required="required" data-validation-required-message="Please enter your password.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="text-center">
+                                <div id="success"></div>
+                                <button id="sign-up-btn" class="btn btn-primary btn-xl text-uppercase " type="submit">Sign up now!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Why choose us -->
+    <section class="page-section" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Why choose us ?</h2>
+                    <h3 class="section-subheading text-muted">4 top reasons</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">E-Commerce</h4>
+                    <p class="text-muted">You can buy, sell or pay for products easily via the internet and other electronic medias</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Responsive Design</h4>
+                    <p class="text-muted">Interface is clear, unique and easy to use</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Web Security</h4>
+                    <p class="text-muted">Your information will be kept strictly confidential</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-adjust fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Auto Bidder</h4>
+                    <p class="text-muted">The bidding will be done automatically</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- list Grid -->
+    <section class="bg-light page-section" id="list">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Current charts</h2>
+                    <h3 class="section-subheading text-muted">Top of products</h3>
+                </div>
+            </div>
+            <div class="row" id="list-nav">
+                <div class="col-lg-2">
+                    <h4><a class="list-title <%= nearest %> text-muted" href="?sort=nearest#list">Almost end</a></h4>
+                </div>
+                <div class="col-lg-2">
+                    <h4><a class="list-title <%= highest %> text-muted" href="?sort=highest#list">Highest price</a></h4>
+                </div>
+                <div class="col-lg-2">
+                    <h4><a class="list-title <%= best %> text-muted" href="?sort=best#list">Best price</a></h4>
+                </div>
+                <div class="col-lg-2">
+                    <h4><a class="list-title <%= hottest %> text-muted" href="?sort=hottest#list">Hottest product</a></h4>
+                </div>
+            </div>
+            <div class="row">
+                <% items.forEach(function(item) { %>
+                <div class="col-md-4 col-sm-6 list-item">
+                    <a class="list-link" data-toggle="modal" href="#P<%= item.id %>">
+                        <div class="list-hover">
+                            <div class="list-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
+                        </div>
+                    </a>
+                    <div class="list-caption">
+                        <h4>
+                            <%= item.name %>
+                        </h4>
+                        <a class="text-muted a-currentbid">Current price: </a>
+                        <a class=" text-muted a-price">$
+                            <%= item.price %></a>
+                        <div>
+                            <button data-toggle="tooltip" data-placement="bottom" title="View details product" type="button" class="btn-bid  btn-outline-warning">
+                                <a href="/detailsProduct?id=<%= item.id %>"><i class="fas fa-search"></i></a></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                            <button data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ -->
+    <section class="page-section" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="section-heading">FAQ</h2>
+                    <h3 class="section-subheading text-muted">Q/A about products and services</h3>
+                    <div class="accordion" id="FAQ">
+                        <% faqs.forEach(function(faq) { %>
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#question-<%= faq.id %>">
+                                        Q:
+                                        <%= faq.question %>?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="question-<%= faq.id %>" class="collapse" data-parent="#FAQ">
+                                <div class="card-body">
+                                    <b>Answer:</b>
+                                    <%= faq.answer %>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                    <button id="pdf" class="btn btn-primary btn-xl" href="#"><i class="far fa-file-pdf"></i>&nbsp;&nbsp;See all FAQs</button>
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+        <!--container-->
+    </section>
+    <% include ../partial-layout/footer%>
+    <!-- list Modals -->
+    <!-- Modal -->
+    <% items.forEach(function(item) { %>
+    <div class="list-modal modal fade" id="P<%= item.id %>" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row featurette ">
+                        <div class="col-lg-5 mx-auto">
+                            <div class="modal-body">
+                                <img class="img-fluid" src="img/thumbnail/<%= item.id %>-thumbnail.jpg">
+                                <div>
+                                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button>
+                                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                                    <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 mx-auto">
+                            <h1 class=" product-title ">
+                                <%= item.name %>
+                            </h1>
+                            <h1 class=" product-price mt-4"> Current Bid: $
+                                <%= item.price %>
+                            </h1>
+                            <h1 class=" product-price mt-4"> Số lượt ra giá:
+                                <%= item.auctionTime %>
+                            </h1>
+                            <hr class="featurette-divider">
+                            <!-- Project Details Go Here -->
+                            <p class="content"><%= item.details %></p>
+                            <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $
+                                <%= item.buynow %>
+                            </button>
+                            <ul class="list-inline content mx-auto">
+                                <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
+                                <li>Remaining time: <%= item.remain %> seconds</li>
+                                <li>Category: <%= item.category %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/index.js"></script>
+</body>
+
+</html>

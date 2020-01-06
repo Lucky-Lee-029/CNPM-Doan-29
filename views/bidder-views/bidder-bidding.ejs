@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Hello Auction</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/bidder-bidding.css" rel="stylesheet">
+ 
+</head>
+
+<style type="text/css">
+  .bar-up {width: <%= percentLike %>%; height: 18px; background-color: #4CAF50;}
+  .bar-down {width: <%= percentDislike %>%; height: 18px; background-color: #2196F3;}
+
+</style>
+
+<body id="page-top">
+<% include ../partial-layout/header%>
+     
+    <!-- Header -->
+  <header class="masthead">
+      <div class="container">
+          <% include ../partial-layout/search-bar%>
+      </div>
+  </header>
+
+   <!-- container -->
+  <div class="container">
+      <div class="row mt-5">
+          <div class="col-md-4">
+              <div class="profile-sidebar">
+                  <!-- card profile -->
+                  <div class="card">
+                      <img src="/img/profile/user-<%= user.id%>.jpg" alt="" style="width:100%">
+                      <h1 class="mt-3"><%= user.name %></h1>
+                      <!--   <p class="title">CEO & Founder, Example</p> -->
+                      <p><a href="#"><i class="fa fa-dribbble"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                      <a href="#"><i class="fa fa-linkedin"></i></a>
+                      <a href="#"><i class="fa fa-facebook"></i></a></p>
+                      <div>
+                        <button class="btn-contact">Contact</button>
+                      </div>
+                      <div>
+                          <hr class="featurette-divider "> 
+                          <span class="heading"><b>User Rating</b></span>
+                          <br>
+                          <span class="heading">Point: <%= point %></span>
+                          <div class="row-rate">
+                              <div class="side">
+                                  <div><a><i class="far fa-thumbs-up"></i></a></div>
+                              </div>
+                              <div class="middle">
+                                  <div class="bar-container">
+                                  <div class="bar-up"></div>
+                                  </div>
+                              </div>
+                              <div class="side right">
+                                  <div><%= totalLike.totalLike %></div>
+                              </div>
+                          </div>
+                          <div class="row-rate">
+                              <div class="side">
+                                  <div><a><i class="far fa-thumbs-down"></i></a></div>
+                              </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-down"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                  <div><%= totalDislike.totalDisLike %></div>
+
+                            </div>
+                          </div>
+                      </div>
+                      <div >
+                          <hr class="featurette-divider "> 
+                          <p><b>You are a bidder </b></p>
+                          <button data-toggle="modal" data-target="#become-seller" class="btn-contact">Become a seller</button>
+                      </div>
+              
+                      <div >
+                          <hr class="featurette-divider "> 
+                          <p><button ><a class="account-setting" href="bidder-account-setting">Account setting</a></button></p>
+                      </div>         
+                  </div> 
+              </div>
+          </div>
+
+
+        
+          <div class="col-lg-8">
+                  <!-- menu -->
+              <div class="topnav">
+                  <a  href="/bidder/bidder-review/1">Reviews</a>
+                  <a href="/bidder/bidder-wonproduct/1">Won products</a>
+                  <a class="active" href="/bidder/bidder-bidding/1">Bidding products</a>
+                   <a  href="/bidder/bidder-watchlist/1">Watch list</a>
+                <!-- <a href="#contact">Account setting</a> -->
+              </div>          
+                  <div class="profile-content">
+                    <div class="left-border">
+                      <h3><b>Bidding Product</b></h3>
+                    </div>
+                   <!-- tab menu content -->
+                 <!-- Main View -->
+                   <section class="bg-light page-section" id="list">
+                    <div class="container">
+                      <div class="row">
+                        <% items.forEach(function(item) { %>
+                         <div class="col-md-4 col-sm-6 list-item">
+                          <a class="list-link" data-toggle="modal" href="#P<%= item.id %>">
+                            <div class="list-hover">
+                              <div class="list-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                              </div>
+                            </div>
+                            <img class="img-fluid" src="/img/list/<%= item.id %>-thumbnail.jpg" alt="">
+                          </a>
+                          <div class="list-caption">
+                            <h4><%= item.name %></h4>
+                            <a class="text-muted a-currentbid">Current bid: </a>
+                            <a class=" text-muted a-price">$<%= item.price %></a>
+                            <hr class="featurette-divider "> 
+                            <span class="dot"><img class="avatar"src="/img/profile/user-<%= item.holdId %>.jpg"> ****<%= item.owner.substring(4,50) %></span>  
+                          </div>
+                        </div>
+                        <% }); %>
+                      </div>
+              <% if (pages > 0) { %>
+                <ul class="pagination  justify-content-center">
+                    <% if (current == 1) { %>
+                        <li class="page-item disabled"><a class="page-link">First</a></li>
+                    <% } else { %>
+                        <li class="page-item"><a class="page-link" href="/bidder/bidder-bidding/1?id=<%= user.id %>">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="page-item disabled"><a class="page-link">...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                        <% } else { %>
+                            <li class="page-item"><a class="page-link" href="/bidder/bidder-bidding/<%= i %>?id=<%= user.id %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="page-item disabled"><a class="page-link">Last</a></li>
+                    <% } else { %>
+                        <li class="page-item"><a class="page-link" href="/bidder/bidder-bidding/<%= pages %>?id=<%= user.id %>">Last</a></li>
+                    <% } %>
+                </ul>
+            <% } %>
+                    </div>
+                  </section>
+              </div>
+          </div>
+                <!-- list Modals -->
+      </div>
+  </div>
+
+    <!-- list Modals -->
+    <input class="none"  type="text" id="userId" value="<%= user.id %>">
+    <!-- Modal -->
+    <% items.forEach(function(item) { %>
+    <div class="list-modal modal fade" id="P<%= item.id %>" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row featurette ">
+                        <div class="col-lg-5 mx-auto">
+                            <div class="modal-body">
+                                <img class="img-fluid" src="/img/thumbnail/<%= item.id %>-thumbnail.jpg">
+                                <div>
+                                    <!-- <button type="button" class="btn-bid btn-outline-warning"><i class="fas fa-search"></i></button> -->
+                                   <input class="none productId"  type="text" value="<%= item.id %>">
+                                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart addWatchList"></i></button>
+                                   <button type="button" class="btn-bid btn-outline-warning"><a href="/bidder/bidder-detail-product/?id=<%= item.id %>"<i class="fas fa-gavel"></i></a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 mx-auto">
+                            <h1 class=" product-title ">
+                                <%= item.name %>
+                            </h1>
+                            <h1 class=" product-price mt-4"> Current Bid: $
+                                <%= item.price %>
+                            </h1>
+                            <hr class="featurette-divider">
+                            <!-- Project Details Go Here -->
+                            <p class="content"><%= item.details %></p>
+                            <button type="button" class="btn-buynow btn-warning  mb-5">BUY NOW FOR $
+                                <%= item.buynow %>
+                            </button>
+                            <ul class="list-inline content mx-auto">
+                                <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
+                                <li>Posted date: <%= item.dateStart %></li>
+                                <li>End date: <%= item.dateEnd %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+
+    <!-- end modal product -->
+     <!-- request becomeseller modal -->
+    <div class="modal fade" id="become-seller" role="dialog">
+        <div class="modal-dialog">         
+            <!-- Modal content-->                        
+            <div class="modal-content">              
+                <!-- INPUT CONTAINER -->
+                <div class="input-container">
+                    <div class="modal-header"> 
+                        <h4 class="modal-title">Do you want to be a seller?</h4>
+                        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    </div>
+                  <!--   <div class="modal-body">
+                        <p>Pleases wait for reponse.</p>
+                    </div> -->
+                    <div class="modal-footer">
+                         <button id="cancle" class="btn btn-warning" data-dismiss="modal" value="OK">NO</button>
+                          <button id="submit" type="button" class="btn btn-warning" data-dismiss="modal">YES</button> <!-- <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button> -->
+                    </div>                        
+                </div>
+                <!-- /INPUT CONTAINER -->
+            </div> 
+        </div>
+    </div>   
+    <!-- /request becomeseller modal -->       
+  <!-- Footer -->
+  <% include ../partial-layout/footer%>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/bidder-bidding.js"></script>
+ 
+
+
+</body>
+
+</html>

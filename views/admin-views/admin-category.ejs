@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Fontastic Custom icon font-->
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="../img/favicon.ico">
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-content d-flex align-items-stretch"> 
+       <% include ../partial-layout/admin-sidebar%>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header" id = "dash-title">
+            <div class="container-fluid">
+              <h2>Dashboard/Manage category</h2>
+            </div>
+          </header>
+          <section>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
+                          <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                          <a href="#" class="dropdown-item edit" id = "edit-table"> <i class="fas fa-edit"></i>Edit</a>
+                          <a href="#" class="dropdown-item edit" id = "add-btn"> <i class="fas fa-plus"></i>Add category</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3>All category</h3>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">                       
+                        <table class="table table-striped table-hover" class="display" id ="users-table">
+                          <thead>
+                            <tr class="text-center">
+                              <th scope="col">ID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Products</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Delete</th>
+                            </tr>
+                          </thead>                          
+                          <tbody class="text-center">
+                            <% list.forEach(function(item) {  %>
+                            <tr>
+                              <td class="not-edit"><%= item.id %></td>
+                              <td><%= item.name %></td>
+                              <td class="not-edit"><%= item.length %></td>
+                              <td><%=item.details %></td>
+                              <td class="not-edit"><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <% }); %>
+                          </tbody>                          
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 text-center" id = "add">
+                      <form action="./category/add" class="form text-center" method="post">
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Add new category</h1>
+                        <input type="text" name ="name" id="first" class="form-control" placeholder="Name" required="" autofocus="">
+                        <input type="text" id="last" name="description" class="form-control" placeholder="Description" required="" autofocus="">
+                        <button class="btn btn-primary btn-block" id ="submit-btn" type="submit"><i class="fas fa-user-plus"></i>Add</button>
+                        <a href="#" id="cancel"><i class="fas fa-angle-left"></i> Back</a>
+                    </form>
+                </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+   <!-- Footer -->
+  <% include ../partial-layout/footer%>
+    <!-- Confirm box -->
+    <% include ../partial-layout/admin-confirm-box%>
+    <!-- JavaScript files-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Main File-->
+    <script src="../js/front.js"></script>
+  </body>
+</html>

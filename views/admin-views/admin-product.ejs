@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Fontastic Custom icon font-->
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../css/admin.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="../img/favicon.ico">
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="../img/ava.jpg" alt="avatar" class="img-fluid"></div>
+            <div class="title">
+              <h4>Hi, Hoàng</h4>
+              <p>Administrator</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus-->
+          <span class="heading">Main</span>
+          <ul class="list-unstyled">
+            <li><a href="admin.html"><i class="fas fa-home"></i> Home </a></li>
+            <li><a href="admin-profile.html"><i class="fas fa-home"></i>Profile</a></li>
+            <li><a href="../login.html"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout </a></li>
+          </ul>
+          <span class="heading">Manage</span>
+          <ul class="list-unstyled">
+            <li><a href="admin-category.html"><i class="fas fa-list"></i>&nbsp;Manage Category</a></li>
+            <li class="active"><a href="admin-product.html"><i class="fas fa-box"></i>&nbsp;Manage Product</a></li>
+            <li><a href="#user" aria-expanded="true" data-toggle="collapse"><i class="fas fa-users"></i>Manage User</a>
+              <ul id="user" class="collapse list-unstyled">
+                <li><a href="view-users.html">View all users</a></li>
+                <li><a href="view-request.html">Manage seller request</a></li>
+                <li><a href="admin-seller.html">Manage seller</a></li>
+              </ul>
+            </li>
+          </ul><span class="heading">Overview</span>
+          <ul class="list-unstyled">
+            <li> <a href="add-manager.html"><i class="fas fa-user-plus"></i>Add manager</a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Announcement</a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Demo </a></li>
+            <li> <a href="#"><i class="fas fa-envelope"></i>Demo </a></li>
+          </ul>
+        </nav>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header" id = "dash-title">
+            <div class="container-fluid">
+              <h2>Dashboard/Manage product</h2>
+            </div>
+          </header>
+          <section>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
+                          <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                          <a href="#" class="dropdown-item edit" id = "edit-table"> <i class="fas fa-edit"></i>Edit</a>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3>All product</h3>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">                       
+                        <table class="table table-striped table-hover" class="display" id ="users-table">
+                          <thead>
+                            <tr class="text-center">
+                              <th scope="col">No</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Category</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Owner</th>
+                              <th scope="col">Status</th>
+                              <th scope="col">Delete</th>
+                            </tr>
+                          </thead>
+                          <tbody class="text-center">
+                            <tr>
+                              <td>1</td>
+                              <td>Iphone 16</td>
+                              <td>Smartphone</td>
+                              <td>Electronic devices</td>
+                              <td>@mdo</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Laptop XYZ</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@fat</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                            <tr key = {key}>
+                              <td>3</td>
+                              <td>Laptop ABC</td>
+                              <td>Laptop</td>
+                              <td>Electronic devices</td>
+                              <td>@twitter</td>
+                              <td>Bidding</td>
+                              <td><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Hello Auction</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a class="text-muted" href="#">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-muted" href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Confirm form -->
+    <div class="modal fade text-center" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" id="confirm-modal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h4>Are you sure</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="modal-btn-yes">Yes</button>
+          <button type="button" class="btn btn-danger" id="modal-btn-no">No</button>
+        </div>
+    </div>
+  </div>
+</div>
+    <!-- JavaScript files-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Main File-->
+    <script src="../js/front.js"></script>
+  </body>
+</html>
