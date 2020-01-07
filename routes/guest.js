@@ -29,7 +29,7 @@ router.get('/detailsProduct', async(req, res, next) => {
   one.hourEnd = -now.diff(end, 'hours') - one.dayEnd*24;
   one.minEnd = -now.diff(end, 'minutes') - one.hourEnd*60 - one.dayEnd*24*60;
 
-	res.render('guest-views/detail-product', { 
+	res.render('guest-views/guest-detail-product', { 
 		product: one,
     catList: categoryList,
 		own: seller,
@@ -38,6 +38,7 @@ router.get('/detailsProduct', async(req, res, next) => {
     logged: req.isLogged
 	});
 });
+
 //Search page
 router.get('/search/:page', async(req, res, next) => {
   var input = req.cookies["input"] || "";
@@ -79,6 +80,7 @@ router.post('/search/:page', async(req, res, next) => {
   res.cookie("input", input, { httpOnly: true }, {maxAge : 9999});
   res.redirect("/search/"+page+"?filter="+filter);
 });
+
 //List of product page
 router.get('/list-view/:page', async(req, res, next) => {
 	var catID = String(req.query.category);

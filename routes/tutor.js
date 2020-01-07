@@ -221,5 +221,50 @@ router.get('/tutor-postProduct', async(req, res, next) => {
     });
 });
 
+// //Detail product-view page
+// router.get('/detail-product', async(req, res, next) => {
+//     const user = req.session.user;
+//     const id = String(req.query.id);
+//     console.log("tui ne " + id);
+//     const categoryList = await tutorModel.getListCategory();
+//     var filter = String(req.query.filter);
+//     if (filter == 'undefined') filter = 'name';
+//     var result = await tutorModel.getProductbyID(id);
+//     const one = JSON.parse(JSON.stringify(result))[0];
+//     result = await tutorModel.getOwnerbyID(id);
+//     const seller = JSON.parse(JSON.stringify(result))[0];
+//     var items = await tutorModel.getRelateItembyID(id);
+//     var now = moment();
+//     var start = one.dateStart;
+//     var end = one.dateEnd;
+//     one.dayStart = now.diff(start, 'days');
+//     one.hourStart = now.diff(start, 'hours'); - one.dayStart * 24;
+//     one.minStart = now.diff(start, 'minutes') - one.hourStart * 60 - one.dayStart * 24 * 60;
+//     one.dayEnd = -now.diff(end, 'days');
+//     one.hourEnd = -now.diff(end, 'hours') - one.dayEnd * 24;
+//     one.minEnd = -now.diff(end, 'minutes') - one.hourEnd * 60 - one.dayEnd * 24 * 60;
+//     var nextStep = one.price + one.bidStep;
+//     var history = await tutorModel.getHistory(id);
+//     var json = await tutorModel.getTotalLike(user.id);
+//     var totalLike = JSON.parse(JSON.stringify(json))[0];
+//     var result = await tutorModel.getTotalDislike(user.id);
+//     var totalDislike = JSON.parse(JSON.stringify(result))[0];
+//     var temp = totalLike.totalLike + totalDislike.totalDisLike;
+//     var point = totalLike.totalLike + "/" + temp;
+//     var percentLike = (totalLike.totalLike / temp) * 100;
+//     var percentDislike = 100 - percentLike;
+//     res.render('student-views/student-detail-product', {
+//         user: user,
+//         product: one,
+//         point: point,
+//         lists: history,
+//         nextStep: nextStep,
+//         catList: categoryList,
+//         own: seller,
+//         relateItems: items,
+//         filter: filter,
+//         logged: req.isLogged
+//     });
+// });
 
 module.exports = router;

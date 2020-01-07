@@ -29,6 +29,14 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+button a {
+  color: #000;
+}
+
+.none{
+  display: none;
+}
+
 .product-title {
     font-size: 30px ;
     font-weight: bold ;
@@ -39,6 +47,23 @@ h6 {
     font-weight: bold ;
     display: block ;
 }
+
+.border-user{
+  border-style: solid;
+  border: 1px solid #fed136;
+  border-radius: 16px;
+  height: 60px;
+  width: 150px;
+  background-color: none;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 
 .content{
    text-align: justify;

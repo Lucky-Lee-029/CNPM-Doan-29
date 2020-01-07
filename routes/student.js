@@ -6,6 +6,102 @@ var passport = require('passport');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
+//Detail product-view page
+router.get('/detail-product', async(req, res, next) => {
+   const user=req.session.user;
+  const id = String(req.query.id);
+  const categoryList = await studentModel.getListCategory();
+  var filter = String(req.query.filter);
+  if (filter == 'undefined') filter = 'name';
+  console.log("day ne "+ id);
+  var result = await studentModel.getProductbyID(id);
+    const one = JSON.parse(JSON.stringify(result))[0];
+  result = await studentModel.getOwnerbyID(id);  
+    const seller = JSON.parse(JSON.stringify(result))[0];
+    var items = await studentModel.getRelateItembyID(id);
+  var now = moment();
+  var start = one.dateStart;
+  var end = one.dateEnd;
+  one.dayStart = now.diff(start,'days');
+  one.hourStart = now.diff(start, 'hours') - one.dayStart*24;
+  one.minStart = now.diff(start, 'minutes') - one.hourStart*60 - one.dayStart*24*60;
+  one.dayEnd = -now.diff(end,'days');
+  one.hourEnd = -now.diff(end, 'hours') - one.dayEnd*24;
+  one.minEnd = -now.diff(end, 'minutes') - one.hourEnd*60 - one.dayEnd*24*60;
+  var nextStep = one.price+one.bidStep; 
+  var history = await studentModel.getHistory(id);
+    var json = await studentModel.getTotalLike(user.id);
+    var totalLike =  JSON.parse(JSON.stringify(json))[0];
+    var result = await studentModel.getTotalDislike(user.id);
+    var totalDislike =  JSON.parse(JSON.stringify(result))[0];
+    var temp = totalLike.totalLike + totalDislike.totalDisLike;
+    var point =  totalLike.totalLike + "/" +  temp;
+    var percentLike = (totalLike.totalLike/temp)*100;
+    var percentDislike = 100-percentLike;
+    res.render('student-views/detail-product', { 
+        user: user,
+        product: one,
+        point: point,
+        lists: history,
+        nextStep: nextStep,
+        catList: categoryList,
+        own: seller,
+        relateItems: items,
+        filter: filter,
+        logged: req.isLogged
+    });
+});
+
+
+//List of product page
+router.get('/list-view/:page', async(req, res, next) => {
+    var user = req.session.user;
+    var catID = String(req.query.category);
+    var search = String(req.query.search);
+    if (search == 'undefined') search = 'name';
+    const categoryList = await studentModel.getListCategory();
+    var dataPerPage = 12;
+    var page = req.params.page || 1;
+    var skip = dataPerPage*(page - 1);
+    switch(catID)
+    {
+        case 'laptop':
+            catID = 4;
+            var items = await studentModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await studentModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+            break;
+        case 'smartphone':
+            catID= 5;
+            var items = await studentModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await studentModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+            break;
+        case 'all':
+            var items =  await studentModel.getAllProduct(dataPerPage, skip);
+            var numPro = await studentModel.getNumProduct();
+            var json = JSON.parse(JSON.stringify(numPro));
+            var category = {name: 'Tất cả khóa học', description: 'Tất cả các khóa học hiện có', length: json[0].num};
+            break;
+        default:
+            var items = await studentModel.getProductbyCategory(catID, dataPerPage, skip);
+            var result = await studentModel.getInfoCategory(catID);
+            var category = JSON.parse(JSON.stringify(result))[0];
+    }
+  var recent = 3600;
+    res.render('guest-views/list-view', { 
+        user: user,
+        category: category,
+        filter: search,
+        list: items,
+        catList: categoryList,
+        catID: catID,
+        current: page,
+        pages: Math.ceil(category.length/dataPerPage),
+    recent: recent,
+    logged: req.isLogged
+    });
+});
 
 router.post('/student-wonproduct/reviewLike', async (req, res, next) => {
     const user = req.session.user;
@@ -76,6 +172,8 @@ router.get('/student-bidding/:page', async (req, res, next) => {
         logged: req.isLogged
     });
 });
+
+
 
 router.get('/student-detail-product/', async (req, res) => {
     const user = req.session.user;
@@ -510,7 +608,7 @@ router.get('/student-my-class', async (req, res) => {
     var items = await studentModel.myClass(id);
     const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('student/student-my-class', {
+    res.render('student-views/student-my-class', {
         items,
         catList,
         logged,
@@ -525,7 +623,7 @@ router.get('/student-my-class', async (req, res) => {
     var items = await studentModel.myClass(id);
     const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('student/student-my-class', {
+    res.render('student-views/student-my-class', {
         items,
         catList,
         logged,
@@ -541,7 +639,7 @@ router.get('/student-class', async (req, res) => {
     var items = await studentModel.allClass();
     const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('student/student-class', {
+    res.render('student-views/student-class', {
         items,
         catList,
         logged,
@@ -556,7 +654,7 @@ router.get('/student-history', async (req, res) => {
     var items = await studentModel.allClass();
     const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('student/student-history', {
+    res.render('student-views/student-history', {
         items,
         catList,
         logged,
@@ -571,7 +669,7 @@ router.get('/student-acount', async (req, res) => {
     var items = await studentModel.allClass();
     const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('student/student-acount', {
+    res.render('student-views/student-acount', {
         items,
         catList,
         logged,

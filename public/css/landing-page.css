@@ -120,8 +120,6 @@ button a {
   font-size: 40px;
   margin-top: 0;
   margin-bottom: 15px;
-  font-weight: 700;
-  font-family: 'Montserrat',  sans-serif;
 }
 
 .page-section h3.section-subheading {
@@ -406,8 +404,6 @@ header.masthead .intro-text .intro-heading {
 }
 #sign-up .text-muted {
   padding-bottom: 25px;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;;
 }
 
 #sign-up .form-group {
@@ -463,8 +459,6 @@ header.masthead .intro-text .intro-heading {
 .service-heading {
   margin: 15px 0;
   text-transform: none;
-  font-weight: 700;
-  font-family: 'Montserrat',  sans-serif;
 }
 
 #list .section-subheading {
