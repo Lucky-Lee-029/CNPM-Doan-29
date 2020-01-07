@@ -27,19 +27,6 @@
 
 </head>
 
-<style type="text/css">
-    .bar-up {
-        width: <%=percentLike %>%;
-        height: 18px;
-        background-color: #4CAF50;
-    }
-
-    .bar-down {
-        width: <%=percentDislike %>%;
-        height: 18px;
-        background-color: #2196F3;
-    }
-</style>
 
 <body id="page-top">
     <% include ../partial-layout/header%>
@@ -67,39 +54,6 @@
                             <a href="#"><i class="fa fa-facebook"></i></a></p>
                         <div>
                             <button class="btn-contact">Liên hệ</button>
-                        </div>
-                        <div>
-                            <hr class="featurette-divider ">
-                            <span class="heading"><b> </b></span>
-                            <br>
-                            <span class="heading">Point: <%= point %></span>
-                            <div class="row-rate">
-                                <div class="side">
-                                    <div><a><i class="far fa-thumbs-up"></i></a></div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-up"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div><%= totalLike.totalLike %></div>
-                                </div>
-                            </div>
-                            <div class="row-rate">
-                                <div class="side">
-                                    <div><a><i class="far fa-thumbs-down"></i></a></div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-down"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div><%= totalDislike.totalDisLike %></div>
-
-                                </div>
-                            </div>
                         </div>
                         <div>
                             <hr class="featurette-divider ">
@@ -155,43 +109,12 @@
                                         <hr class="featurette-divider ">
                                         <span class="dot"><img class="avatar"
                                                 src="/img/profile/user-<%= item.holdId %>.jpg">
-                                            ****<%= item.owner.substring(4,50) %></span>
+                                            <%= item.owner</span>
                                     </div>
                                 </div>
                                 <% }); %>
-                            </div>
-                            <% if (pages > 0) { %>
-                            <ul class="pagination  justify-content-center">
-                                <% if (current == 1) { %>
-                                <li class="page-item disabled"><a class="page-link">Đầu tiên</a></li>
-                                <% } else { %>
-                                <li class="page-item"><a class="page-link"
-                                        href="/bidder/bidder-bidding/1?id=<%= user.id %>">Đầu tiên</a></li>
-                                <% } %>
-                                <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-                                <% if (i !== 1) { %>
-                                <li class="page-item disabled"><a class="page-link">...</a></li>
-                                <% } %>
-                                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                                <% if (i == current) { %>
-                                <li class="page-item active"><a class="page-link"><%= i %></a></li>
-                                <% } else { %>
-                                <li class="page-item"><a class="page-link"
-                                        href="/bidder/bidder-bidding/<%= i %>?id=<%= user.id %>"><%= i %></a></li>
-                                <% } %>
-                                <% if (i == Number(current) + 4 && i < pages) { %>
-                                <li class="page-item disabled"><a class="page-link">...</a></li>
-                                <% } %>
-                                <% } %>
-                                <% if (current == pages) { %>
-                                <li class="page-item disabled"><a class="page-link">Cuối cùng</a></li>
-                                <% } else { %>
-                                <li class="page-item"><a class="page-link"
-                                        href="/bidder/bidder-bidding/<%= pages %>?id=<%= user.id %>">Cuối cùng</a></li>
-                                <% } %>
-                            </ul>
-                            <% } %>
-                        </div>
+                                    </div>
+                                </div>
                     </section>
                 </div>
             </div>
