@@ -72,15 +72,15 @@ app.get('/profile', isLoggedIn, async(req, res) => {
 
     const categoryList = await guestModel.getListCategory();
     if (req.session.user.role == 0) res.redirect('/student/profile');
-    if (req.session.user.role == 1) res.redirect('/tutor/profile');
+    if (req.session.user.role == 1) res.redirect('/tutor/tutor-watchlist/1');
 });
 
 app.get('/logged', isLoggedIn, async(req, res) => {
 
     const categoryList = await guestModel.getListCategory();
     req.session.user = req.session.passport.user;
-    if (req.session.user.role == 0) res.redirect('/student/profile');
-    if (req.session.user.role == 1) res.redirect('/tutor/profile');
+    if (req.session.user.role == 0) res.redirect('/profile');
+    if (req.session.user.role == 1) res.redirect('/profile');
 });
 
 app.get('/logout', function(req, res) {
