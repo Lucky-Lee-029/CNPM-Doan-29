@@ -7,7 +7,7 @@ var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
 
-router.post('/bidder-wonproduct/reviewLike', async (req, res, next) => {
+router.post('/student-wonproduct/reviewLike', async (req, res, next) => {
     const user = req.session.user;
     var idSeller = req.body.id_seller;
     var review = req.body.review;
@@ -17,11 +17,11 @@ router.post('/bidder-wonproduct/reviewLike', async (req, res, next) => {
     console.log(review);
     console.log(status);
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
-    var result = await bidderModel.insertReview(idSeller, user.id, review, now, status);
+    var result = await studentModel.insertReview(idSeller, user.id, review, now, status);
     res.send('true');
 });
 
-router.post('/bidder-wonproduct/reviewDislike', async (req, res, next) => {
+router.post('/student-wonproduct/reviewDislike', async (req, res, next) => {
     const user = req.session.user;
     var idSeller = String(req.body.id_seller);
     var review = String(req.body.review);
@@ -31,14 +31,14 @@ router.post('/bidder-wonproduct/reviewDislike', async (req, res, next) => {
     console.log(review);
     console.log(status);
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
-    var result = await bidderModel.insertReview(idSeller, user.id, review, now, status);
+    var result = await studentModel.insertReview(idSeller, user.id, review, now, status);
     res.send('true');
 });
 
 //bidding product   
-router.get('/bidder-bidding/:page', async (req, res, next) => {
+router.get('/student-bidding/:page', async (req, res, next) => {
     var user = req.session.user;
-    const category = await bidderModel.getListCategory();
+    const category = await studentModel.getListCategory();
     console.log("tui here");
     console.log(req.session.user);
     console.log(user.id);
@@ -46,22 +46,22 @@ router.get('/bidder-bidding/:page', async (req, res, next) => {
     var dataPerPage = 9;
     var page = req.params.page || 1;
     var skip = dataPerPage * (page - 1);
-    json = await bidderModel.getTotalLike(user.id);
+    json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point = totalLike.totalLike + "/" + temp;
     var percentLike = (totalLike.totalLike / temp) * 100;
     var percentDislike = 100 - percentLike;
-    var item = await bidderModel.getBiddingList(user.id, dataPerPage, skip);
-    var temp1 = await bidderModel.getLengthBiddingList(user.id);
+    var item = await studentModel.getBiddingList(user.id, dataPerPage, skip);
+    var temp1 = await studentModel.getLengthBiddingList(user.id);
     var length = JSON.parse(JSON.stringify(temp1))[0];
     console.log(dataPerPage);
     console.log(page);
     console.log(length.length);
     var filter = 'name';
-    res.render('bidder-views/bidder-bidding', {
+    res.render('student-views/student-bidding', {
         catList: category,
         items: item,
         user: user,
@@ -77,18 +77,18 @@ router.get('/bidder-bidding/:page', async (req, res, next) => {
     });
 });
 
-router.get('/bidder-detail-product/', async (req, res) => {
+router.get('/student-detail-product/', async (req, res) => {
     const user = req.session.user;
     const id = String(req.query.id);
     console.log("tui ne " + id);
-    const categoryList = await bidderModel.getListCategory();
+    const categoryList = await studentModel.getListCategory();
     var filter = String(req.query.filter);
     if (filter == 'undefined') filter = 'name';
-    var result = await bidderModel.getProductbyID(id);
+    var result = await studentModel.getProductbyID(id);
     const one = JSON.parse(JSON.stringify(result))[0];
-    result = await bidderModel.getOwnerbyID(id);
+    result = await studentModel.getOwnerbyID(id);
     const seller = JSON.parse(JSON.stringify(result))[0];
-    var items = await bidderModel.getRelateItembyID(id);
+    var items = await studentModel.getRelateItembyID(id);
     var now = moment();
     var start = one.dateStart;
     var end = one.dateEnd;
@@ -99,16 +99,16 @@ router.get('/bidder-detail-product/', async (req, res) => {
     one.hourEnd = -now.diff(end, 'hours') - one.dayEnd * 24;
     one.minEnd = -now.diff(end, 'minutes') - one.hourEnd * 60 - one.dayEnd * 24 * 60;
     var nextStep = one.price + one.bidStep;
-    var history = await bidderModel.getHistory(id);
-    var json = await bidderModel.getTotalLike(user.id);
+    var history = await studentModel.getHistory(id);
+    var json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point = totalLike.totalLike + "/" + temp;
     var percentLike = (totalLike.totalLike / temp) * 100;
     var percentDislike = 100 - percentLike;
-    res.render('bidder-views/bidder-detail-product', {
+    res.render('student-views/student-detail-product', {
         user: user,
         product: one,
         point: point,
@@ -123,17 +123,17 @@ router.get('/bidder-detail-product/', async (req, res) => {
 });
 
 
-router.post('/bidder-detail-product/Bid', async (req, res) => {
+router.post('/student-detail-product/Bid', async (req, res) => {
     const user = req.session.user;
     const productId = String(req.body.productId);
     const price = String(req.body.price);
     console.log(price + " gui roi ne " + productId);
-    var temp1 = await bidderModel.getProductbyID(productId);
+    var temp1 = await studentModel.getProductbyID(productId);
     var product = JSON.parse(JSON.stringify(temp1))[0];
     console.log(product);
-    var json = await bidderModel.getTotalLike(user.id);
+    var json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point;
@@ -150,10 +150,10 @@ router.post('/bidder-detail-product/Bid', async (req, res) => {
                 product.auctionTime += 1;
                 console.log(price);
                 console.log(product.price);
-                var update = await bidderModel.BidProduct(user.id, productId, price, product.auctionTime);
-                var biding = await bidderModel.updateBiddingList(user.id, productId, price, now);
+                var update = await studentModel.BidProduct(user.id, productId, price, product.auctionTime);
+                var biding = await studentModel.updateBiddingList(user.id, productId, price, now);
                 res.send('true');
-                res.redirect('/bidder/bidder-detail-product/?id=' + productId);
+                res.redirect('/student/student-detail-product/?id=' + productId);
             } else {
                 res.send('falsePrice');
             }
@@ -169,11 +169,11 @@ router.post('/bidder-detail-product/Bid', async (req, res) => {
 
 });
 
-router.post('/bidder-detail-product/buynow', async (req, res) => {
+router.post('/student-detail-product/buynow', async (req, res) => {
     const user = req.session.user;
     const productId = String(req.body.productId);
     console.log(" gui roi buynow " + productId);
-    var temp1 = await bidderModel.getProductbyID(productId);
+    var temp1 = await studentModel.getProductbyID(productId);
     var product = JSON.parse(JSON.stringify(temp1))[0];
     console.log(product);
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -182,10 +182,10 @@ router.post('/bidder-detail-product/buynow', async (req, res) => {
 
         product.auctionTime += 1;
         console.log(product.price);
-        var update = await bidderModel.BuyNowProduct(user.id, productId, product.buynow, product.auctionTime);
-        var biding = await bidderModel.updateBiddingList(user.id, productId, product.buynow, now);
+        var update = await studentModel.BuyNowProduct(user.id, productId, product.buynow, product.auctionTime);
+        var biding = await studentModel.updateBiddingList(user.id, productId, product.buynow, now);
         res.send('true');
-        res.redirect('/bidder/bidder-detail-product/?id=' + productId);
+        res.redirect('/student/student-detail-product/?id=' + productId);
 
     } else {
         res.send('auctioned');
@@ -196,141 +196,141 @@ router.post('/bidder-detail-product/buynow', async (req, res) => {
 });
 
 
-router.post('/bidder-bidding/request', async (req, res) => {
+router.post('/student-bidding/request', async (req, res) => {
     var userReq = req.session.user;
-    var json = await bidderModel.getCountRequestToSeller(userReq.id);
+    var json = await studentModel.getCountRequestToSeller(userReq.id);
 
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addRequestToSeller(userReq.id);
+        var insert = await studentModel.addRequestToSeller(userReq.id);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-wonproduct/request', async (req, res) => {
+router.post('/student-wonproduct/request', async (req, res) => {
     var userReq = req.session.user;
-    var json = await bidderModel.getCountRequestToSeller(userReq.id);
+    var json = await studentModel.getCountRequestToSeller(userReq.id);
 
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addRequestToSeller(userReq.id);
+        var insert = await studentModel.addRequestToSeller(userReq.id);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-review/request', async (req, res) => {
+router.post('/student-review/request', async (req, res) => {
     var userReq = req.session.user;
-    var json = await bidderModel.getCountRequestToSeller(userReq.id);
+    var json = await studentModel.getCountRequestToSeller(userReq.id);
 
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addRequestToSeller(userReq.id);
+        var insert = await studentModel.addRequestToSeller(userReq.id);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-watchlist/request', async (req, res) => {
+router.post('/student-watchlist/request', async (req, res) => {
     var userReq = req.session.user;
-    var json = await bidderModel.getCountRequestToSeller(userReq.id);
+    var json = await studentModel.getCountRequestToSeller(userReq.id);
 
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log(count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addRequestToSeller(userReq.id);
+        var insert = await studentModel.addRequestToSeller(userReq.id);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-detail-product/addWatchList', async (req, res) => {
+router.post('/student-detail-product/addWatchList', async (req, res) => {
     var user = req.session.user;
     console.log(user);
     var productId = String(req.body.productId);
     console.log(productId);
-    var json = await bidderModel.getCountWatchListProduct(user.id, productId);
+    var json = await studentModel.getCountWatchListProduct(user.id, productId);
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("tui o day" + count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addWatchList(user.id, productId);
+        var insert = await studentModel.addWatchList(user.id, productId);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-watchlist/addWatchList', async (req, res) => {
+router.post('/student-watchlist/addWatchList', async (req, res) => {
     var user = req.session.user;
     console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(user.id, productId);
+    var json = await studentModel.getCountWatchListProduct(user.id, productId);
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("watch list add" + count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addWatchList(user.id, productId);
+        var insert = await studentModel.addWatchList(user.id, productId);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-bidding/addWatchList', async (req, res) => {
+router.post('/student-bidding/addWatchList', async (req, res) => {
     var user = req.session.user;
     console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(user.id, productId);
+    var json = await studentModel.getCountWatchListProduct(user.id, productId);
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("watch list add" + count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addWatchList(user.id, productId);
+        var insert = await studentModel.addWatchList(user.id, productId);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-wonproduct/addWatchList', async (req, res) => {
+router.post('/student-wonproduct/addWatchList', async (req, res) => {
     var user = req.session.user;
     console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(user.id, productId);
+    var json = await studentModel.getCountWatchListProduct(user.id, productId);
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("watch list add" + count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addWatchList(user.id, productId);
+        var insert = await studentModel.addWatchList(user.id, productId);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.post('/bidder-review/addWatchList', async (req, res) => {
+router.post('/student-review/addWatchList', async (req, res) => {
     var user = req.session.user;
     console.log(user);
     var productId = String(req.body.productId);
-    var json = await bidderModel.getCountWatchListProduct(user.id, productId);
+    var json = await studentModel.getCountWatchListProduct(user.id, productId);
     var count = JSON.parse(JSON.stringify(json))[0];
     console.log("watch list add" + count.count);
     if (count.count < 1) {
-        var insert = await bidderModel.addWatchList(user.id, productId);
+        var insert = await studentModel.addWatchList(user.id, productId);
         res.send('true');
     } else {
         res.send('false');
     }
 });
 
-router.get('/bidder-watchlist/:page', async (req, res, next) => {
+router.get('/student-watchlist/:page', async (req, res, next) => {
     var user = req.session.user;
-    const category = await bidderModel.getListCategory();
+    const category = await studentModel.getListCategory();
     console.log("tui here");
     console.log(req.session.user);
     console.log(user.id);
@@ -338,9 +338,9 @@ router.get('/bidder-watchlist/:page', async (req, res, next) => {
     var dataPerPage = 9;
     var page = req.params.page || 1;
     var skip = dataPerPage * (page - 1);
-    json = await bidderModel.getTotalLike(user.id);
+    json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point = totalLike.totalLike + "/" + temp;
@@ -349,10 +349,10 @@ router.get('/bidder-watchlist/:page', async (req, res, next) => {
     console.log(dataPerPage);
     console.log(page);
     console.log(skip);
-    var item = await bidderModel.getWatchList(user.id, dataPerPage, skip);
-    var temp1 = await bidderModel.getLengthWatchList(user.id);
+    var item = await studentModel.getWatchList(user.id, dataPerPage, skip);
+    var temp1 = await studentModel.getLengthWatchList(user.id);
     var length = JSON.parse(JSON.stringify(temp1))[0];
-    res.render('bidder-views/bidder-watchlist', {
+    res.render('student-views/student-watchlist', {
         catList: category,
         items: item,
         user: user,
@@ -368,9 +368,9 @@ router.get('/bidder-watchlist/:page', async (req, res, next) => {
     });
 });
 
-router.get('/bidder-wonproduct/:page', async (req, res, next) => {
+router.get('/student-wonproduct/:page', async (req, res, next) => {
     var user = req.session.user;
-    const category = await bidderModel.getListCategory();
+    const category = await studentModel.getListCategory();
     console.log("tui here");
     console.log(req.session.user);
     console.log(user.id);
@@ -378,22 +378,22 @@ router.get('/bidder-wonproduct/:page', async (req, res, next) => {
     var dataPerPage = 9;
     var page = req.params.page || 1;
     var skip = dataPerPage * (page - 1);
-    json = await bidderModel.getTotalLike(user.id);
+    json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point = totalLike.totalLike + "/" + temp;
     var percentLike = (totalLike.totalLike / temp) * 100;
     var percentDislike = 100 - percentLike;
-    var item = await bidderModel.getWonProductList(user.id, dataPerPage, skip);
-    var temp1 = await bidderModel.getLengthWonProductList(user.id);
+    var item = await studentModel.getWonProductList(user.id, dataPerPage, skip);
+    var temp1 = await studentModel.getLengthWonProductList(user.id);
     var length = JSON.parse(JSON.stringify(temp1))[0];
     console.log(dataPerPage);
     console.log(page);
     console.log(skip);
     var filter = 'name';
-    res.render('bidder-views/bidder-wonproduct', {
+    res.render('student-views/student-wonproduct', {
         catList: category,
         items: item,
         user: user,
@@ -409,9 +409,9 @@ router.get('/bidder-wonproduct/:page', async (req, res, next) => {
     });
 });
 
-router.get('/bidder-review/:page', async (req, res, next) => {
+router.get('/student-review/:page', async (req, res, next) => {
     var user = req.session.user;
-    const category = await bidderModel.getListCategory();
+    const category = await studentModel.getListCategory();
     console.log("tui here");
     console.log(req.session.user);
     console.log(user.id);
@@ -419,22 +419,22 @@ router.get('/bidder-review/:page', async (req, res, next) => {
     var dataPerPage = 9;
     var page = req.params.page || 1;
     var skip = dataPerPage * (page - 1);
-    json = await bidderModel.getTotalLike(user.id);
+    json = await studentModel.getTotalLike(user.id);
     var totalLike = JSON.parse(JSON.stringify(json))[0];
-    var result = await bidderModel.getTotalDislike(user.id);
+    var result = await studentModel.getTotalDislike(user.id);
     var totalDislike = JSON.parse(JSON.stringify(result))[0];
     var temp = totalLike.totalLike + totalDislike.totalDisLike;
     var point = totalLike.totalLike + "/" + temp;
     var percentLike = (totalLike.totalLike / temp) * 100;
     var percentDislike = 100 - percentLike;
-    var review = await bidderModel.getReviewList(user.id, dataPerPage, skip);
-    var temp1 = await bidderModel.getLengthReviewList(user.id);
+    var review = await studentModel.getReviewList(user.id, dataPerPage, skip);
+    var temp1 = await studentModel.getLengthReviewList(user.id);
     var length = JSON.parse(JSON.stringify(temp1))[0];
     console.log(dataPerPage);
     console.log(page);
     console.log(skip);
     var filter = 'name';
-    res.render('bidder-views/bidder-review', {
+    res.render('student-views/student-review', {
         catList: category,
         reviews: review,
         user: user,
@@ -450,12 +450,12 @@ router.get('/bidder-review/:page', async (req, res, next) => {
     });
 });
 
-router.get('/bidder-account-setting', async (req, res, next) => {
+router.get('/student-account-setting', async (req, res, next) => {
     var user = req.session.user;
     console.log("get account settign userId " + user.id);
-    const category = await bidderModel.getListCategory();
+    const category = await studentModel.getListCategory();
     var filter = 'name';
-    res.render('bidder-views/bidder-account-setting', {
+    res.render('student-views/student-account-setting', {
         catList: category,
         user: user,
         filter: filter,
@@ -463,7 +463,7 @@ router.get('/bidder-account-setting', async (req, res, next) => {
     });
 });
 
-router.post('/bidder-account-setting/updateInfo', async (req, res, next) => {
+router.post('/student-account-setting/updateInfo', async (req, res, next) => {
     var user = req.session.user;
     var name = req.body.name;
     var phone = req.body.phone;
@@ -472,19 +472,19 @@ router.post('/bidder-account-setting/updateInfo', async (req, res, next) => {
     console.log("id here " + user.id);
     var dateUpdate = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2)
     console.log("server" + name + "  " + phone + "  " + email + "  " + dateUpdate);
-    var update = await bidderModel.updateInfo(user.id, name, email, phone, dateUpdate);
+    var update = await studentModel.updateInfo(user.id, name, email, phone, dateUpdate);
     res.send('true');
-    res.redirect('/bidder-watchlist/1');
+    res.redirect('/student-watchlist/1');
 
 });
 
 
-router.post('/bidder-account-setting/updatePass', async (req, res, next) => {
+router.post('/student-account-setting/updatePass', async (req, res, next) => {
     var user = req.session.user;
     var currentPass = req.body.currentPass;
     var newPass = req.body.newPass;
     var newPass2 = req.body.newPass;
-    var json = await bidderModel.getCurrentPass(user.id);
+    var json = await studentModel.getCurrentPass(user.id);
     var userPass = JSON.parse(JSON.stringify(json))[0];
     console.log("id here " + user.id);
     console.log("current pass" + currentPass);
@@ -492,7 +492,7 @@ router.post('/bidder-account-setting/updatePass', async (req, res, next) => {
     if (bcrypt.compareSync(currentPass, userPass.password)) {
         if (newPass === newPass2) {
             newPass = bcrypt.hashSync(newPass, bcrypt.genSaltSync(10), null);
-            var update = await bidderModel.updatePass(user.id, newPass);
+            var update = await studentModel.updatePass(user.id, newPass);
             res.send('0');
         } else {
             res.send('1');
@@ -500,17 +500,78 @@ router.post('/bidder-account-setting/updatePass', async (req, res, next) => {
     } else
         res.send('2');
 
-    res.redirect('/bidder-watchlist/1');
+    res.redirect('/student-watchlist/1');
 
 });
+router.get('/student-my-class', async (req, res) => {
+    var id = req.session.user.id;
+    var user = req.session.user;
+    var filter = 'name';
+    var items = await studentModel.myClass(id);
+    const catList = await studentModel.getListCategory();
+    var logged = true;
+    res.render('student/student-my-class', {
+        items,
+        catList,
+        logged,
+        filter,
+        user
+    });
+});
+router.get('/student-my-class', async (req, res) => {
+    var id = req.session.user.id;
+    var user = req.session.user;
+    var filter = 'name';
+    var items = await studentModel.myClass(id);
+    const catList = await studentModel.getListCategory();
+    var logged = true;
+    res.render('student/student-my-class', {
+        items,
+        catList,
+        logged,
+        filter,
+        user
+    });
+})
+
 router.get('/student-class', async (req, res) => {
     var id = req.session.user.id;
     var user = req.session.user;
     var filter = 'name';
-    var items = await bidderModel.myClass(id);
-    const catList = await bidderModel.getListCategory();
+    var items = await studentModel.allClass();
+    const catList = await studentModel.getListCategory();
     var logged = true;
-    res.render('/student/student-class', {
+    res.render('student/student-class', {
+        items,
+        catList,
+        logged,
+        filter,
+        user
+    });
+})
+router.get('/student-history', async (req, res) => {
+    var id = req.session.user.id;
+    var user = req.session.user;
+    var filter = 'name';
+    var items = await studentModel.allClass();
+    const catList = await studentModel.getListCategory();
+    var logged = true;
+    res.render('student/student-history', {
+        items,
+        catList,
+        logged,
+        filter,
+        user
+    });
+})
+router.get('/student-acount', async (req, res) => {
+    var id = req.session.user.id;
+    var user = req.session.user;
+    var filter = 'name';
+    var items = await studentModel.allClass();
+    const catList = await studentModel.getListCategory();
+    var logged = true;
+    res.render('student/student-acount', {
         items,
         catList,
         logged,

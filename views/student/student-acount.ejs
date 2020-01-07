@@ -25,20 +25,6 @@
     <!-- Custom styles for this template -->
     <link href="/css/bidder-wonproduct.css" rel="stylesheet">
 
-    <style type="text/css">
-        .bar-up {
-            width: <%=percentLike %>%;
-            height: 18px;
-            background-color: #4CAF50;
-        }
-
-        .bar-down {
-            width: <%=percentDislike %>%;
-            height: 18px;
-            background-color: #2196F3;
-        }
-    </style>
-
 </head>
 
 
@@ -87,23 +73,6 @@
                             <button class="btn-contact">Liên hệ</button>
                         </div>
                         <div>
-                            <hr class="featurette-divider ">
-                            <span class="heading"><b>User Rating</b></span>
-                            <br>
-                            <span class="heading">Point: <%= point %></span>
-                            <div class="row-rate">
-                                <div class="side">
-                                    <div><a><i class="far fa-thumbs-up"></i></a></div>
-                                </div>
-                                <div class="middle">
-                                    <div class="bar-container">
-                                        <div class="bar-up"></div>
-                                    </div>
-                                </div>
-                                <div class="side right">
-                                    <div><%= totalLike.totalLike %></div>
-                                </div>
-                            </div>
                             <div class="row-rate">
                                 <div class="side">
                                     <div><a><i class="far fa-thumbs-down"></i></a></div>
@@ -112,10 +81,6 @@
                                     <div class="bar-container">
                                         <div class="bar-down"></div>
                                     </div>
-                                </div>
-                                <div class="side right">
-                                    <div><%= totalDislike.totalDisLike %></div>
-
                                 </div>
                             </div>
                         </div>
@@ -168,10 +133,10 @@
             <div class="col-lg-8">
                 <!-- menu -->
                 <div class="topnav">
-                    <a href="/student/student-history/1">Lịch sử</a>
-                    <a class="active" href="/student/student-acount/1">Tài khoản</a>
-                    <a href="/student/student-class/1">Khóa học đang mở</a>
-                    <a href="/student/student-my-class/1">Khóa học của tôi</a>
+                    <a href="/student/student-history">Lịch sử</a>
+                    <a class="active" href="/student/student-acount">Tài khoản</a>
+                    <a href="/student/student-class">Khóa học đang mở</a>
+                    <a href="/student/student-my-class">Khóa học của tôi</a>
                     <!-- <a href="#contact">Account setting</a> -->
                 </div>
                 <div class="profile-content">
@@ -184,7 +149,7 @@
                         <div class="container">
                             <% items.forEach(function(item) { %>
                             <div class="card-deck mg-100 col-6 align-self-center">
-                                <div class="card bg-success text-white">
+                                <div class="card text-white">
                                     <h4 class="card-title">Thông tin tài khoản</h4>
                                     <div class="card-body text-left">
                                         <div>Tên:<%= item.name%> </div>
@@ -196,7 +161,7 @@
                             </div>
                             <br>
                             <div class="card-deck col-6 align-self-center">
-                                <div class="card bg-success text-white">
+                                <div class="card text-white">
                                     <h4 class="card-title">Ví khả dụng</h4>
                                     <div class="card-body text-left">
                                         <div>Số dư hiện có: </div>

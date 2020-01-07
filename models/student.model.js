@@ -123,5 +123,8 @@ module.exports = {
 	},
 	myClass(id) {
 		return db.load(`SELECT p.id as id, p.startDate as created,p.name as name, p.current_price as price,u.id as holdID, u.name as owner from biddinglist b, product p, user u where b.id_user= ${id} and b.id_product=p.id `)
+	},
+	allClass() {
+		return db.load(`SELECT u.name as owner, p.name as name, p.current_price as price, p.id as id, p.details as details, p.startDate as date FROM product p, user u WHERE u.id=p.id_owner `)
 	}
 };

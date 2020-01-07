@@ -27,19 +27,6 @@
 
 </head>
 
-<style type="text/css">
-    .bar-up {
-        width: <%=percentLike %>%;
-        height: 18px;
-        background-color: #4CAF50;
-    }
-
-    .bar-down {
-        width: <%=percentDislike %>%;
-        height: 18px;
-        background-color: #2196F3;
-    }
-</style>
 
 <body id="page-top">
     <% include ../partial-layout/header%>
@@ -72,7 +59,7 @@
                             <hr class="featurette-divider ">
                             <span class="heading"><b>User Rating</b></span>
                             <br>
-                            <span class="heading">Point: <%= point %></span>
+
                             <div class="row-rate">
                                 <div class="side">
                                     <div><a><i class="far fa-thumbs-up"></i></a></div>
@@ -82,9 +69,7 @@
                                         <div class="bar-up"></div>
                                     </div>
                                 </div>
-                                <div class="side right">
-                                    <div><%= totalLike.totalLike %></div>
-                                </div>
+
                             </div>
                             <div class="row-rate">
                                 <div class="side">
@@ -94,10 +79,6 @@
                                     <div class="bar-container">
                                         <div class="bar-down"></div>
                                     </div>
-                                </div>
-                                <div class="side right">
-                                    <div><%= totalDislike.totalDisLike %></div>
-
                                 </div>
                             </div>
                         </div>
@@ -122,10 +103,10 @@
             <div class="col-lg-8">
                 <!-- menu -->
                 <div class="topnav">
-                    <a href="/student/student-history/1">Lịch sử</a>
-                    <a href="/student/student-acount/1">Tài khoản</a>
-                    <a href="/student/student-class/1">Khóa học đang mở</a>
-                    <a class="active" href="/student/student-my-class/1">Khóa học của tôi</a>
+                    <a href="/student/student-history">Lịch sử</a>
+                    <a href="/student/student-acount">Tài khoản</a>
+                    <a href="/student/student-class">Khóa học đang mở</a>
+                    <a class="active" href="/student/student-my-class">Khóa học của tôi</a>
                     <!-- <a href="#contact">Account setting</a> -->
                 </div>
                 <div class="profile-content">
