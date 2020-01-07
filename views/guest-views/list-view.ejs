@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading"><%= category.name %> - <%= category.description %></h2>
-          <h3 class="section-subheading text-muted">Hiện có (<%= length %>) khoá học trong danh mục này</h3>
+          <h3 class="section-subheading text-muted">Hiện có (<%= category.length %>) khoá học trong danh mục này</h3>
         </div>
       </div>
       <div class="row">
@@ -57,7 +57,7 @@
             <% if (item.postTime < recent) { %>
               <p class="text-muted">Mới</p>
             <% } %>
-            <p class="text-muted">Chủ sở hữu: <%= item.hold %></p>
+            <p class="text-muted">Giảng viên: <%= item.hold %></p>
             <p class="text-muted">Giá: $<%= item.price %></p>
           </div>
         </div>
@@ -114,12 +114,15 @@
                                 <div>
                                   <% if (logged) {%>
                                     <!-- <button type="button" class="btn-bid btn-outline-warning"><a href="/bidder/bidder-detail-product/?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button> -->
-                                    <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
-                                    <button type="button" class="btn-bid btn-outline-warning"><a href="/bidder/bidder-detail-product/?id=<%= item.ID %>"><i class="fas fa-gavel"></i></a></button>
+                                    <% if (user.role==1) { %>
+                                      <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                                      <button type="button" class="btn-bid btn-outline-warning"><a href="/tutor/detail-product/?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button>
+                                    <% }else {%>
+                                      <button type="button" class="btn-bid btn-outline-warning"><i class="far fa-heart"></i></button>
+                                      <button type="button" class="btn-bid btn-outline-warning"><a href="/student/detail-product?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button>
+                                      <%};%>
                                   <% }else {%>
                                     <button type="button" class="btn-bid btn-outline-warning"><a href="/detailsProduct?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button>
-                                    <button data-target="#alert-login" data-toggle="modal" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i>
-                                    </button>
                                     <%};%>
                                 </div>
                             </div>

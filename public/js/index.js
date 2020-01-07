@@ -62,7 +62,7 @@ function toggleSignUp(e){
 
 
 $(document).ready(function(){
-      $("#signup-mail").blur(function(){
+      $(".form-signup #signup-mail").blur(function(){
       var path = window.location.pathname;
       var new_text = $(this).val();
       $.post(path+'/check', { username: new_text}, function(data)
@@ -80,5 +80,30 @@ $(document).ready(function(){
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 
 });
+
+$(document).ready(function(){
+        $(".addWatchList").click(function(){
+          var userId = $("#userId").val();
+          var modal = $(this).parents('div').first();
+          var input = modal.children();
+          var productId = parseInt($(input[0]).val());
+          console.log(userId+"  " +productId);
+           $.ajax({
+                  type: 'POST',
+                  data: {"userId": userId, "productId" : productId},
+                  url: '/bidder/bidder-watchlist/addWatchList',
+                  }).done(function(data) { 
+                      //Xử lý data ở đây 
+                      if (data ==='true')
+                      {
+                        alert("Added to yout Watch List succesfully!");
+                      }
+                      else
+                      {
+                        alert("This product has been added to your Watch List!");                        
+                      }
+                    });
+          });
+      });
 
 })(jQuery); // End of use strict

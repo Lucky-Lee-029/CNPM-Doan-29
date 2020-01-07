@@ -100,7 +100,7 @@
               
                       <div >
                           <hr class="featurette-divider "> 
-                          <p><button ><a class="account-setting" href="/bidder/bidder-account-setting">Account setting</a></button></p>
+                          <p><button ><a class="account-setting" href="/student/student-account-setting">Account setting</a></button></p>
                       </div>         
                   </div> 
               </div>
@@ -140,18 +140,14 @@
                           </a>
                           <div class="list-caption">
                             <h4><%= item.name %></h4>
-                            <% if (item.bidder==user.id) { %>
-                              <a class="text-muted a-currentbid">Đang giữ giá</a>
-                            </br>
-                              <% } %>
-                            <a class="text-muted a-currentbid">Current bid: </a>
+                            <a class="text-muted a-currentbid">Giá khóa học: </a>
                             <a class=" text-muted a-price">$<%= item.price %></a>
                             <hr class="featurette-divider "> 
-                            <span class="dot"><img class="avatar"src="/img/profile/user-<%= item.holdId %>.jpg"> ****<%= item.owner.substring(4,50) %></span>  
+                            <span class="dot"><img class="avatar"src="/img/profile/user-<%= item.holdId %>.jpg"><%= item.owner %></span>  
                           </div>
                         </div>
-                        <% }); %>
                       </div>
+                      <% }); %>
               <% if (pages > 0) { %>
                 <ul class="pagination  justify-content-center">
                     <% if (current == 1) { %>
@@ -218,20 +214,20 @@
                             <h1 class=" product-title ">
                                 <%= item.name %>
                             </h1>
-                            <h1 class=" product-price mt-4"> Current Bid: $
+                            <h1 class=" product-price mt-4"> Giá khóa học: $
                                 <%= item.price %>
                             </h1>
                             <hr class="featurette-divider">
                             <!-- Project Details Go Here -->
                             <p class="content"><%= item.details %></p>
-                            <button type="button" class="btn-buynow btn-warning  mb-5"><a href="/tutor/detail-product/?id=<%= item.id %>">BUY NOW FOR $
+                            <button type="button" class="btn-buynow btn-warning  mb-5"><a href="/tutor/detail-product/?id=<%= item.id %>">Mua ngay với giá $
                                 <%= item.buynow %></a>
                             </button>
-                            <ul class="list-inline content mx-auto">
+<!--                             <ul class="list-inline content mx-auto">
                                 <li>People hold the product now: ****<%= item.hold.substring(4,50) %></li>
                                 <li>Posted date: <%= item.dateStart %></li>
                                 <li>End date: <%= item.dateEnd %></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>

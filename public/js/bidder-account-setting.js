@@ -1,3 +1,47 @@
+
+ function validateForm()  {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var date = document.getElementById("date").value;
+            console.log(name+"  " +phone + "  " +email + "  " +date);
+             if(name== "") {
+                 alert("Please enter your Name");
+                 return false;
+             }
+             if(email == "") {
+                 alert("Please enter you Email");
+                 return false;
+             }
+             if(phone == "") {
+                 alert("Please enter you Phone");
+                 return false;
+             }
+             if(date == "") {
+                 alert("Please enter you Birth Day");
+                 return false;
+             }
+ 
+             return true;
+         }
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
 (function($) {
   "use strict"; // Start of use strict
 
@@ -79,6 +123,9 @@ $(document).ready(function(){
         })
     })
 
+
+
+
 $(document).ready(function(){
         $("#saveInfo").click(function(){
           var userId = $("#userId").val(); 
@@ -148,45 +195,3 @@ $(document).ready(function(){
 })(jQuery); // End of use strict
 
 
- function validateForm()  {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var phone = document.getElementById("phone").value;
-            var date = document.getElementById("date").value;
-            console.log(name+"  " +phone + "  " +email + "  " +date);
-             if(name== "") {
-                 alert("Please enter your Name");
-                 return false;
-             }
-             if(email == "") {
-                 alert("Please enter you Email");
-                 return false;
-             }
-             if(phone == "") {
-                 alert("Please enter you Phone");
-                 return false;
-             }
-             if(date == "") {
-                 alert("Please enter you Birth Day");
-                 return false;
-             }
- 
-             return true;
-         }
-
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();

@@ -128,9 +128,10 @@ $(document).ready(function(){
       });
 
 $(document).ready(function() {
-    $('#review-submit-0').on('click', function() {
+    $('.review-submit-0').on('click', function() {
 
-        var input = $('#review-modal-0').children();
+        var par = $($(this).parents('div')[1]).children();
+        var input = $(par[1]).children();
         var review_text = $(input[0]).val();
         var isDislike = $(input[1]).val();
         var seller = $(input[2]).val();
@@ -146,9 +147,10 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#review-submit-1').on('click', function() {
+    $('.review-submit-1').on('click', function() {
 
-        var input = $('#review-modal-1').children();
+        var par = $($(this).parents('div')[1]).children();
+        var input = $(par[1]).children();
         var review_text = $(input[0]).val();
         var isLike = $(input[1]).val();
         var seller = $(input[2]).val();

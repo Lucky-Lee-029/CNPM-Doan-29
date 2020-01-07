@@ -105,34 +105,11 @@
                     <h1 class=" product-price mt-4"> Giá khóa học: $<%= product.price %></h1> 
                     <hr class="featurette-divider">
                     <button data-target="#alert-buy" data-toggle="modal" type="button" class="btn-buynow btn-warning  mb-5">Mua khóa học với giá $<%= product.price%></button>
-
-                    <!-- bid box -->
-                   <!--  <p> Reserve price has been met:</p> -->
-                    <!-- <form class="normal-bid"> -->
-                     <!--  <div class="quantity buttons_added">  
-                        <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button>
-                        <input id="input-number" type="number" name="quant[1]" class="input-number qty " step="<%=product.bidStep%>" value="<%=nextStep%>" min="<%=nextStep%>" max="<%=2*product.buynow%>">
-                        <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
-                      </div>  
-                       <input class="none productId" type="text" value="<%= product.id %>">
-                        <button data-target="#alert-check" data-toggle="modal" data-toggle="tooltip" data-placement="bottom" title="Bid now" type="button" class="btn-bid btn-outline-warning"><i class="fas fa-gavel"></i></button> -->
-                       <!--  <button data-toggle="tooltip" data-placement="bottom" title="Add to watch list " type="button" class="btn-bid btn-outline-warning addWatchList"><i class="far fa-heart"></i></button> -->
-                    <!-- </form>
-                    <div class=" none auto-bid"> -->
-                        <!-- <button type="button" class="minus btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">-</button> -->
-                       <!--  <p>Max price:<p>
-                        <input id ="maxPrice" type="number" name="quant[1]" class="input-number qty" step="<%=product.bidStep%>" value ="<%=nextStep%>" min="<%=nextStep%>" max="<%=product.buynow%>"> -->
-                       <!--  <button type="button" class="plus btn btn-default btn-number" data-type="plus" data-field="quant[1]">+</button>
-                        </br> -->
-                        <!-- </br>
-                    </div> -->
                     <ul class="list-inline content mx-auto mt-5">
 
 
                          <p><i class="fas fa-user"></i>Giảng viên:  <a href="#" class="link"><b><%= product.owner%></b></a></p>
-                         <% if (user.role==1) {%>
-                         <a href="#" id="add-description" type="button" class="btn-add-description link"><i class="fa fa-edit" aria-hidden="true"></i> Chỉnh sửa khóa học</a>
-                        <% } %>
+                        
                        <!--  <li>Item condition: <%= product.status %></li>
                         <li>Auction starts: <%= product.dateStart %></li>
                         <li>Auction ends: <%= product.dateEnd %></li> -->
@@ -190,17 +167,6 @@
                     <!-- Tab content -->
                     <div id="Thông Tin" class="tabcontent">
                         <p class="content"><%= product.detail %></p>
-                        <% if (user.role==1) {%>
-                         <button id="add-description" type="button" class="btn-add-description "><i class="fa fa-edit" aria-hidden="true"></i> Add more description</button>
-                        
-                        <div id="add-more-description" class="tabcontent">
-                            <form action="/tutor/detailproduct" method="POST">
-                                <textarea id="add-more-description" type="description" name="description" class="form-control add-description-area" placeholder="Add description" required=""></textarea>
-                                <button class="btn btn-primary btn-block" id="submit-btn" type="submit"><i class="fas fa-edit"></i> Add</button>
-                                <a href="#" id="cancel" class="cancel"><i class="fas fa-angle-left"></i> Back</a>
-                            </form>
-                        </div>
-                        <% } %>
                     </div>
 
           <!--           <div id="Giảng viên" class="tabcontent">
@@ -241,11 +207,7 @@
 
                     <div id="Giảng viên" class="tabcontent">
                         <ul>
-                        <p><i class="fas fa-shopping-cart"> Giảng viên:</i><a href="#" class="link"> <b><%= own.name %></b></a></p>
-                        
-                    
-                        <!-- <p><i class="fas fa-user"></i>Email: <b><%= own.email %></b></p> -->
-                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <%=point%> rating from reviewer</p> <!---<%= own.rating %> -->
+                        <p><i class="fas fa-shopping-cart"> Giảng viên:</i><a href="#" class="link"> <b><%= own.name %></b></a></p>                     
                     </ul>
                     </div>
                 </div>
