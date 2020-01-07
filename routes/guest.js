@@ -41,6 +41,7 @@ router.get('/detailsProduct', async(req, res, next) => {
 
 //Search page
 router.get('/search/:page', async(req, res, next) => {
+   var user = req.session.user;
   var input = req.cookies["input"] || "";
   console.log(input);
   var filter = String(req.query.filter);
@@ -62,7 +63,8 @@ router.get('/search/:page', async(req, res, next) => {
   	var length = JSON.parse(JSON.stringify(json))[0].num;
   }
   var recent = 3600;
-  res.render('guest-views/search', { 
+  res.render('guest-views/search', {
+    user: user,
   	catList: categoryList,
   	filter: filter,
   	list: result,
@@ -83,6 +85,7 @@ router.post('/search/:page', async(req, res, next) => {
 
 //List of product page
 router.get('/list-view/:page', async(req, res, next) => {
+  var user = req.session.user;
 	var catID = String(req.query.category);
 	var search = String(req.query.search);
     if (search == 'undefined') search = 'name';
@@ -117,6 +120,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 	}
   var recent = 3600;
 	res.render('guest-views/list-view', { 
+    user: user,
 		category: category,
 		filter: search,
 		list: items,

@@ -71,7 +71,7 @@ app.post('/signup', recaptcha.middleware.verify, captchaVerification, passport.a
 app.get('/profile', isLoggedIn, async(req, res) => {
 
     const categoryList = await guestModel.getListCategory();
-    if (req.session.user.role == 0) res.redirect('/student/student-watchlist/1');
+    if (req.session.user.role == 0) res.redirect('/student/student-my-class');
     if (req.session.user.role == 1) res.redirect('/tutor/tutor-watchlist/1');
 });
 

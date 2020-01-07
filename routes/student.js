@@ -602,6 +602,7 @@ router.post('/student-account-setting/updatePass', async (req, res, next) => {
 
 });
 router.get('/student-my-class', async (req, res) => {
+     var user = req.session.user;
     var id = req.session.user.id;
     var user = req.session.user;
     var filter = 'name';

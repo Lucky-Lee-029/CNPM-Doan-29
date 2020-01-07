@@ -108,7 +108,7 @@
                                         <a class=" text-muted a-price">$<%= item.price %></a>
                                         <hr class="featurette-divider ">
                                         <span class="dot"><img class="avatar"
-                                                src="/img/profile/user-<%= item.holdId %>.jpg">
+                                                src="/img/profile/user-1.jpg">
                                             <%= item.owner%></span>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                                     <button type="button" class="btn-bid btn-outline-warning"><i
                                             class="far fa-heart addWatchList"></i></button>
                                     <button type="button" class="btn-bid btn-outline-warning"><a
-                                            href="/bidder/bidder-detail-product/?id=<%= item.id %>" <i
+                                            href="/student/detail-product?id=<%= item.id %>" <i
                                             class="fas fa-gavel"></i></a>
                                     </button>
                                 </div>
@@ -161,7 +161,7 @@
                             <hr class="featurette-divider">
                             <!-- Project Details Go Here -->
                             <p class="content"><%= item.details %></p>
-                            <button type="button" class="btn-buynow btn-warning  mb-5"><a href="/tutor/detail-product?id=<%= item.id%>">Mua ngay</a>
+                            <button type="button" class="btn-buynow btn-warning  mb-5"><a href="/student/detail-product?id=<%= item.id%>">Mua ngay</a>
                             </button>
                             <ul class="list-inline content mx-auto">
                                 <li>Số người tham gia:<%= item.number %></li>
