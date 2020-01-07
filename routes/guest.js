@@ -130,7 +130,7 @@ router.get('/list-view/:page', async(req, res, next) => {
 //Homepage
 router.get(/\/index|\//, async(req, res, next) => {
  try {
-    
+    var user = req.session.user;
     const faqs = await guestModel.faq();
     const category = await guestModel.getListCategory();
     const type = String(req.query.sort);
@@ -167,7 +167,8 @@ router.get(/\/index|\//, async(req, res, next) => {
         best:best,
         catList:category,
         filter: search,
-        logged: req.isLogged
+        logged: req.isLogged,
+        user: user
     });
   } catch (err) {
     console.log(err);
