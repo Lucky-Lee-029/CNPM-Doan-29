@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>E-Learning</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/bidder-account-setting.css" rel="stylesheet">
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css"
+    rel="stylesheet" />
+  <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+</head>
+
+<body id="page-top">
+  <% include ../partial-layout/header%>
+  <!-- Navigation -->
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <% include ../partial-layout/search-bar%>
+    </div>
+  </header>
+
+  <!-- container -->
+  <div class="container">
+    <div class="left-border">
+      <h2>Account setting</h2>
+    </div>
+    <div class="dashboard-content">
+      <!-- HEADLINE -->
+      <!-- /HEADLINE -->
+
+      <div class="tab">
+        <button class="tablinks btn-warning" onclick="openTab(event, 'Change Information')" id="defaultOpen"><b>Change
+            Information</b></button>
+        <button class="tablinks btn-warning" onclick="openTab(event, 'Change Password')"><b>Change Password</b></button>
+      </div>
+      <inpust class="none" type="text" id="userId" value="<%= user.id %>">
+        <div id="Change Information" class="tabcontent">
+          <div class="form-box-items">
+            <!-- FORM BOX ITEM -->
+            <div class="form-box-item">
+              <h4><b>Change Information</b></h4>
+              <hr class="line-separator">
+              <!-- PROFILE IMAGE UPLOAD -->
+              <div class="profile-image">
+                <div class="profile-image-data">
+                  <figure class="user-avatar medium">
+                    <img src="/img/profile/user-<%=user.id%>.jpg" alt="profile-default-image">
+                  </figure>
+                  <p class="text-header ">Profile Photo</p>
+                  <!-- <p class="upload-details">Minimum size 70x70px</p> -->
+                </div>
+                <a href="#" class="button mid-short dark-light">Upload Image...</a>
+              </div>
+              <!-- PROFILE IMAGE UPLOAD -->
+
+              <form id="profile-info-form">
+                <div class="input-container">
+                  <label for="name" class="rl-label required">Account Name</label>
+                  <input type="text" id="name" name="name" value="<%=user.name%>"
+                    placeholder="Enter your account name here...">
+                </div>
+
+                <div class="input-container">
+                  <label for="email" class="rl-label">Email</label>
+                  <input type="email" id="email" name="email" value="<%=user.email%>"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email!"
+                    placeholder="Enter your email address here...">
+                </div>
+
+                <div class="input-container">
+                  <label for="phone" class="rl-label">Phone Number</label>
+                  <input type="text" id="phone" name="phone" value="<%=user.phone%>"
+                    placeholder="Enter your email address here...">
+                </div>
+
+                <div class="input-container">
+                  <label class="rl-label" for="date">Date</label>
+                  <input class="form-control" id="date" name="date" placeholder="DD-MM-YYYY"
+                    value="<%=user.dob.substring(8,10) +'-'+user.dob.substring(5,7) +'-'+ user.dob.substring(0,4) %>"
+                    type="text" />
+                </div>
+
+                <button id="saveInfo" type="submit" class="btn btn-warning"
+                  onsubmit="return validateForm()">Save</button>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- /FORM BOX -->
+
+        <div id="Change Password" class="tabcontent">
+          <div class="form-box-items">
+            <!-- FORM BOX ITEM -->
+            <div class="form-box-item">
+              <h4><b>Change Password</b></h4>
+              <hr class="line-separator">
+              <form id="profile-pass-form">
+                <div class="input-container half">
+                  <label for="new_pwd" class="rl-label">Current Password</label>
+                  <input type="password" id="current_pass" name="current_pass" value=""
+                    placeholder="Enter your current password here...">
+                </div>
+
+                <div class="input-container half">
+                  <label for="new_pass" class="rl-label">New Password</label>
+                  <input type="password" id="new_pass" name="new_pass" placeholder="Enter your new password here...">
+                </div>
+
+                <div class="input-container half">
+                  <label for="new_pass2" class="rl-label">Repeat Password</label>
+                  <input type="password" id="new_pass2" name="new_pass2" placeholder="Repeat your new password here...">
+                </div>
+
+
+                <button type="submit" id="savePass" class="btn btn-warning">Save</button>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- FORM BOX ITEMS -->
+
+    <!--   </div>
+      </div> -->
+
+
+
+    <!-- Footer -->
+    <% include ../partial-layout/footer%>
+
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/js/bidder-account-setting.js"></script>
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css">
+
+</body>
+
+</html>
