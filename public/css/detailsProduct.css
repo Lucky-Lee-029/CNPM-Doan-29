@@ -43,6 +43,10 @@ h6 {
     box-sizing: border-box;
 }
 
+button .btn-add-description{
+    background-color: #eee;
+    color: #000;
+}
 
 /* Style the list */
 
@@ -91,6 +95,11 @@ div.quantity {
     border-radius: 5px;
     float: left;
     margin: 0 4px 0 0;
+}
+
+.mySlides{
+    width: 420px;
+    height: 260px;
 }
 
 .minus {

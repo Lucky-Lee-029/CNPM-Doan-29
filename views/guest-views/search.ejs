@@ -37,8 +37,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading"><%= category.name %> - <%= category.description %></h2>
-          <h3 class="section-subheading text-muted">Các khoá học hiện có (<%= category.length %> sản phẩm)</h3>
+          <h2 class="section-heading">Kết quả tìm thấy</h2>
+          <h3 class="section-subheading text-muted">Hiện có (<%= length %>) khoá học</h3>
         </div>
       </div>
       <div class="row">
@@ -57,7 +57,7 @@
             <% if (item.postTime < recent) { %>
               <p class="text-muted">Mới</p>
             <% } %>
-            <p class="text-muted">Chủ sở hữu: <%= item.hold %></p>
+            <p class="text-muted">Người dạy: <%= item.hold %></p>
             <p class="text-muted">Giá: $<%= item.price %></p>
           </div>
         </div>
@@ -68,7 +68,7 @@
                     <% if (current == 1) { %>
                         <li class="page-item disabled"><a class="page-link">First</a></li>
                     <% } else { %>
-                        <li class="page-item"><a class="page-link" href="/list-view/1?category=<%= catID %>">First</a></li>
+                        <li class="page-item"><a class="page-link" href="/search/1?filter=<%= filter %>">First</a></li>
                     <% } %>
                     <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
                     <% if (i !== 1) { %>
@@ -78,7 +78,7 @@
                         <% if (i == current) { %>
                             <li class="page-item active"><a class="page-link"><%= i %></a></li>
                         <% } else { %>
-                            <li class="page-item"><a class="page-link" href="/list-view/<%= i %>?category=<%= catID %>"><%= i %></a></li>
+                            <li class="page-item"><a class="page-link" href="/search/<%= i %>?filter=<%= filter %>"><%= i %></a></li>
                         <% } %>
                         <% if (i == Number(current) + 4 && i < pages) { %>
                             <li class="page-item disabled"><a class="page-link">...</a></li>
@@ -87,7 +87,7 @@
                     <% if (current == pages) { %>
                         <li class="page-item disabled"><a class="page-link">Last</a></li>
                     <% } else { %>
-                        <li class="page-item"><a class="page-link" href="/list-view/<%= pages %>?category=<%= catID %>">Last</a></li>
+                        <li class="page-item"><a class="page-link" href="/search/<%= pages %>?filter=<%= filter %>">Last</a></li>
                     <% } %>
                 </ul>
             <% } %>
@@ -138,7 +138,6 @@
                             </button>
                             <ul class="list-inline content mx-auto">
                                 <li>Người dạy: <%= item.hold %></li>
-                                <li>Rating: <%= item.price %></li>
                                 <li>Category: <%= item.category %></li>
                             </ul>
                         </div>
