@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading"><%= category.name %> - <%= category.description %></h2>
-          <h3 class="section-subheading text-muted">Các khoá học hiện có (<%= category.length %> sản phẩm)</h3>
+          <h3 class="section-subheading text-muted">Hiện có (<%= length %>) khoá học trong danh mục này</h3>
         </div>
       </div>
       <div class="row">
@@ -138,7 +138,6 @@
                             </button>
                             <ul class="list-inline content mx-auto">
                                 <li>Người dạy: <%= item.hold %></li>
-                                <li>Rating: <%= item.price %></li>
                                 <li>Category: <%= item.category %></li>
                             </ul>
                         </div>
