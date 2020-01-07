@@ -19,6 +19,11 @@ a:hover {
   color: #fed136 !important;
 }
 
+
+button a {
+    color: #000;
+}
+
 h1,
 h2,
 h3{
@@ -31,6 +36,17 @@ h5,
 h6 {
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
+}
+
+.addProduct {
+  background-color: #fff; 
+  border: 2px solid #fed136; 
+  color: black; 
+  padding: 6px 10px; 
+  font-size: 12px; 
+  margin: 0px;
+  cursor: pointer; 
+  border-radius: 50%;
 }
 
 .none{
@@ -396,6 +412,8 @@ tr:nth-child(even) {
   cursor: pointer; 
   border-radius: 50%;
 }
+
+
 
 .btn-bid a {
    color: black; 

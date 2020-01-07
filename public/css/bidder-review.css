@@ -14,12 +14,13 @@ a {
 a:hover {
   color: #fec503;
 }
-.none{
-    display: none;
-}
 
 .text-primary {
   color: #fed136 !important;
+}
+
+.none{
+  display: none;
 }
 
 h1,
@@ -27,8 +28,8 @@ h2,
 h3{
    font-family: "Titillium Web", sans-serif;
 }
-h4{
-  font-family: Franklin Gothic Medium, sans-serif;
+h4 {
+  font-family: "Franklin Gothic Medium", sans-serif;
 }
 h5,
 h6 {
@@ -36,14 +37,16 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.a-price{
-  font-size: 10px;
-  font-family: Impact, Charcoal, sans-serif;
+span p .text-muted{
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
-.a-currentbid{
-  font-size: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+.review {
+  background-color: #e0e0e0;
+  border: 2px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 .left-border {
@@ -54,7 +57,6 @@ h6 {
   padding: 5px 16px;
   background-color: #fff;
 }
-
 
 /* Three column layout */
 .side {
@@ -101,10 +103,10 @@ h6 {
   color: white;
 }
 
-/* Individual bars *//*
-.bar-up {width: <%= percentLike %>%; height: 18px; background-color: #4CAF50;}
-.bar-down {width: <%= percentDislike %>%; height: 18px; background-color: #2196F3;}*/
-
+/* Individual bars */
+/*.bar-up {width: 60%; height: 18px; background-color: #4CAF50;}
+.bar-down {width: 30%; height: 18px; background-color: #2196F3;}
+*/
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 @media (max-width: 400px) {
   .side, .middle {
@@ -131,6 +133,15 @@ h6 {
   height: 30px;
   border-radius: 50%;
 }
+
+.review-avatar{
+  vertical-align: middle;
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+  border-radius: 50%;
+}
+
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -163,6 +174,16 @@ h6 {
 /* Main content */
 .main {
   margin-top: 30px; /* Add a top margin to avoid content overlay */
+}
+
+
+/*review card*/
+
+.review-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
 }
 
 /*profile card*/
@@ -411,7 +432,7 @@ tr:nth-child(even) {
   font-family: Arial, Helvetica, sans-serif;
 }
 .page-section {
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .page-section h2.section-heading {
@@ -757,8 +778,7 @@ header.masthead .intro-text .intro-heading {
 #list .list-item .list-caption {
   max-width: 400px;
   margin: 0 auto;
-  /*padding: 25px;*/
-  padding-bottom: 40px;
+  padding: 25px;
   text-align: center;
   background-color: #fff;
 }
@@ -774,27 +794,6 @@ header.masthead .intro-text .intro-heading {
   margin: 0;
   font-family: 'Droid Serif', sans-serif;
 }
-
-#list .list-item .list-caption hr {
-  margin-top: 10px;
-  margin-bottom: 10px; 
-} 
-
-#list .list-item .list-caption a {
-  background-color: : #fff;
-} 
-
-
-#list .list-item .list-caption span {
-  float: left;
-  margin: 0;
-  font-size: 12px;
-  font-style: italic;
-  padding-left: 20px;
-  padding-right: 10px;
-  font-family: 'Droid Serif', sans-serif;
-}
-
 
 #list * {
   z-index: 2;

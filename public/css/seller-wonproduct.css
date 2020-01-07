@@ -210,6 +210,10 @@ h6 {
     font-size: 18px;
 }
 
+.card p button a{
+    color: white;
+}
+
 .card a {
     text-decoration: none;
     font-size: 22px;
