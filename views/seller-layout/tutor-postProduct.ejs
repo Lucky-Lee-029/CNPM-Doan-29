@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Auction</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/seller.css" rel="stylesheet">
+    <link href="/css/seller-wonproduct.css" rel="stylesheet">
+    <script src="/ckeditor4/ckeditor.js"></script>
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <% include ../partial-layout/header%>
+
+        <!-- Header -->
+        <header class="masthead">
+            <div class="container">
+                <div class="input-group search-bar text-center">
+                    <div class="input-group-prepend dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                            <i class="fas fa-filter"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Search by name</a>
+                            <a class="dropdown-item" href="#">Search by category</a>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search your goods">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+
+                </div>
+                <br> <br>
+            </div>
+        </header>
+
+        <!-- container -->
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="profile-sidebar">
+                        <!-- card profile -->
+                        <div class="card">
+                            <img src="/img/profile/user-<%= idU%>.jpg" alt="" style="width:100%">
+                            <h1 class="mt-3">
+                                <%= user.name %>
+                            </h1>
+                            <p><a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-facebook"></i></a></p>
+                            <div>
+                                <button class="btn-contact">Contact</button>
+                            </div>
+                            <div>
+                                <hr class="featurette-divider ">
+                                <span class="heading"><b>User Rating</b></span>
+                                <br>
+                                <span class="heading">Point: <%= point %></span>
+                                <div class="row-rate">
+                                    <div class="side">
+                                        <div><a><i class="far fa-thumbs-up"></i></a></div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-up"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>
+                                            <%= totalLike.totalLike %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-rate">
+                                    <div class="side">
+                                        <div><a><i class="far fa-thumbs-down"></i></a></div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-down"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>
+                                            <%= totalDislike.totalDisLike %>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <hr class="featurette-divider ">
+                                <p><b>You are a seller </b></p>
+                            </div>
+                            <div>
+                                 <hr class="featurette-divider "> 
+                          <p><button ><a class="account-setting" href="/bidder/bidder-account-setting">Account setting</a></button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Seller Start Here -->
+
+                <div class="col-lg-7 mx-auto">
+                    <div id="post-forms" class="text-center">
+                        <form class="form-postProduct" action="/seller/postproduct" method="POST" enctype='multipart/form-data'>
+                            <!-- for's label (Name of form, logo, etc) -->
+                            <h1 class="h3 mb-3 txt-postPro" style="text-align: center">Thông tin khóa học</h1>
+                            <!-- product information form -->
+                            <input type="text" id="namePro" name="namePro" class="form-control" placeholder="Tên khóa học" required="">
+                            <input type="text" id="price" name="price" class="form-control" placeholder="Price" required="">
+                            <input type="text" id="priceStep" name="priceStep" class="form-control" placeholder="Giá khóa học" required="">
+                            <textarea type="text" id="description" name="description" class="form-control" placeholder="Thông tin khóa học" required=""></textarea>
+                            <input type="file" id="addImg" name="addImg" class="form-control" placeholder="Add image" multiple required>
+                            <input type="checkbox" id="extend" name="extend"> Auto extend
+                            <button class="btn btn-primary btn-block" type="submit" id="submit-add-product"><i class="fas fa-sign-in-alt"></i> Post</button>
+                        </form>
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Footer -->
+        <% include ../partial-layout/footer%>
+
+            <!-- Bootstrap core JavaScript -->
+            <script>
+                CKEDITOR.replace('description');
+            </script>
+            <script src="/vendor/jquery/jquery.min.js"></script>
+            <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Plugin JavaScript -->
+            <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for this template -->
+            <script src="/js/postProduct.js"></script>
+            <script src="/js/index.js"></script>
+
+
+</body>
+
+</html>

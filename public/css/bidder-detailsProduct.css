@@ -8,13 +8,17 @@ p {
 }
 
 a {
-    color: #fed136;
+    color: #000;
 }
 
 a:hover {
     color: #fec503;
 }
 
+.mySlides{
+    width: 420px;
+    height: 260px;
+}
 .text-primary {
     color: #fed136 !important;
 }
@@ -43,8 +47,15 @@ h6 {
     box-sizing: border-box;
 }
 
+.auto-bid input{
+    boder: 1px solid #000;
+}
 
 /* Style the list */
+
+button a {
+    color: #000;
+}
 
 ul.breadcrumb {
     padding: 10px 16px;
@@ -94,6 +105,8 @@ div.quantity {
     float: left;
     margin: 0 4px 0 0;
 }
+
+
 
 .none{
     display: none;
@@ -276,8 +289,8 @@ td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
-}
 
+}
 
 /* Style the tab */
 
