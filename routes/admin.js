@@ -3,6 +3,10 @@ const adminModel = require('../models/admin.model');
 var cookieParser = require('cookie-parser');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
+var passport = require('passport');
+const userModel = require('../models/user.model');
+const guestModel = require('../models/guest.model');
+
 
 router.get('/category/', async(req, res, next) => {
 	console.log(req.path);
@@ -36,8 +40,24 @@ router.post('/category/add', async(req, res, next) => {
   res.redirect('back');
 });
 router.get('/view-user/', async(req, res, next) => {
-  const userList = await adminModel.getListUser();
+  const userList = await adminModel.getListTutor();
   res.render('admin-views/view-users', { 
+    title: 'Login page',
+    list: userList,
+    page_name: req.path
+  });
+});
+router.get('/course', async(req, res, next) => {
+  const userList = await adminModel.getAllProduct();
+  res.render('admin-views/admin-course', { 
+    title: 'Login page',
+    list: userList,
+    page_name: req.path
+  });
+});
+router.get('/view-tutor/', async(req, res, next) => {
+  const userList = await adminModel.getListUser();
+  res.render('admin-views/admin-tutor', { 
     title: 'Login page',
     list: userList,
     page_name: req.path

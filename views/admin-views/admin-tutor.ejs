@@ -19,12 +19,22 @@
   <body>
     <div class="page">
       <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="../img/ava.jpg" alt="avatar" class="img-fluid"></div>
+            <div class="title">
+              <h4>Hi, Hoàng</h4>
+              <p>Administrator</p>
+            </div>
+          </div>
           <% include ../partial-layout/admin-sidebar%>
         <div class="content-inner">
           <!-- Page Header-->
           <header class="page-header" id = "dash-title">
             <div class="container-fluid">
-              <h2>Dashboard/Manage product</h2>
+              <h2>Dashboard/Manage user/Manage seller</h2>
             </div>
           </header>
           <section>
@@ -42,7 +52,7 @@
                     </div>
                   </div>
                     <div class="card-header d-flex align-items-center">
-                      <h3>All product</h3>
+                      <h3>All seller</h3>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">                       
@@ -51,28 +61,36 @@
                             <tr class="text-center">
                               <th scope="col">No</th>
                               <th scope="col">Name</th>
-                              <th scope="col">Category</th>
-                              <th scope="col">Owner</th>
-                              <th scope="col">Description</th>
-                              <th scope="col">Delete</th>
+                              <th scope="col">Username</th>
+                              <th scope="col">Remove</th>
                             </tr>
                           </thead>
                           <tbody class="text-center">
-                              <% list.forEach(function(item) {  %>
-                              <tr>
+                            <% list.forEach(function(item) {  %>
+                            <tr>
                               <td class="not-edit"><%= item.id %></td>
                               <td><%= item.name %></td>
-                              <td class="not-edit"><%= item.category %></td>
-                              <td><%= item.owner %></td>
-                              <td><%=item.details %></td>
+                              <td class="not-edit"><%= item.username %></td>
                               <td class="not-edit"><button class="btn btn-primary delete"><a class="list-link" data-toggle="modal" href="#confirm-modal">Delete</a></button></td>
                             </tr>
                             <% }); %>
+                            
+                            </tr>
                           </tbody>
                         </table>
                       </div>
                     </div>
                   </div>
+                  <div class="col-lg-4 text-center" id = "add">
+                      <form action="/signup/" class="form text-center">
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Add new user</h1>
+                        <input type="text" id="first-name" class="form-control" placeholder="First name" required="" autofocus="">
+                        <input type="text" id="last-name" class="form-control" placeholder="Last name" required autofocus="">
+                        <input type="text" id="username" class="form-control" placeholder="Username" required autofocus="">
+                        <button class="btn btn-primary btn-block" id ="submit-btn" type="submit"><i class="fas fa-user-plus"></i> Add</button>
+                        <a href="#" id="cancel"><i class="fas fa-angle-left"></i> Back</a>
+                    </form>
+                </div>
                 </div>
               </div>
             </div>

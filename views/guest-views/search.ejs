@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Hello Auction</title>
+  <title>Hello Courseri</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="/img/thumbnail/<%= item.ID %>-thumbnail.jpg">
+            <img class="img-fluid" src="/img/<%= item.ID %>/1-full.jpg">
           </a>
           <div class="list-caption">
             <h4><%= item.name %></h4>
@@ -110,7 +110,7 @@
                     <div class="row featurette ">
                         <div class="col-lg-5 mx-auto">
                             <div class="modal-body">
-                                <img class="img-fluid" src="/img/thumbnail/<%= item.ID %>-thumbnail.jpg">
+                                <img class="img-fluid" src="/img/<%= item.ID %>/1-full.jpg">
                                 <div>
                                   <% if (logged) {%>
                                     <!-- <button type="button" class="btn-bid btn-outline-warning"><a href="/bidder/bidder-detail-product/?id=<%= item.ID %>"><i class="fas fa-search"></i></a></button> -->

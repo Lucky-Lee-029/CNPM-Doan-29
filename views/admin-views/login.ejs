@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Courseri</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/login.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+    <% include ../partial-layout/header%>
+        <!-- Header -->
+        <header class="masthead">
+            <div class="container">
+                <div class="row">
+                    <h1 class="h1 heading col-12"> Admin dashboard </h1>
+                    <div id="logreg-forms" class="text-center">
+                        <form class="form-signin" action="/admin/login" method="POST">
+                            <!--Login for's label (Name of form, logo, etc) -->
+                            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+
+                            <!-- Username login form -->
+                            <input type="name" name="username" class="form-control" placeholder="Your Email" required="">
+                            <input type="password" name="password" class="form-control" placeholder="Your Password" required="">
+                            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <% include ../partial-layout/footer%>
+            <!-- Bootstrap core JavaScript -->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Plugin JavaScript -->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <!-- Custom scripts for this template -->
+            <script src="js/index.js"></script>
+
+</body>
+
+</html>

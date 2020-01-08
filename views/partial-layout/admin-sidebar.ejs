@@ -17,12 +17,12 @@
           <span class="heading">Manage</span>
           <ul class="list-unstyled">
             <li <% if (page_name === '/category') { %>class="active" <% } %> ><a href="/admin/category"><i class="fas fa-list"></i>&nbsp;Manage Category</a></li>
-            <li<% if (page_name === 'product') { %>class="current" <% } %>><a href="/admin/product"><i class="fas fa-box"></i>&nbsp;Manage Course</a></li>
+            <li<% if (page_name === 'product') { %>class="current" <% } %>><a href="/admin/course"><i class="fas fa-box"></i>&nbsp;Manage Course</a></li>
             <li><a href="#user" aria-expanded="true" data-toggle="collapse"><i class="fas fa-users"></i>Manage User</a>
               <ul id="user" class="collapse list-unstyled">
                 <li<% if (page_name === '/view-user') { %>class="current" <% } %>><a href="/admin/view-user">View all users</a></li>
                 <li<% if (page_name === '/manage-request') { %>class="current" <% } %>><a href="/admin/view-request">Manage up tutor request</a></li>
-                <li<% if (page_name === '/seller') { %>class="current" <% } %>><a href="/admin/seller-">Manage tutor</a></li>
+                <li<% if (page_name === '/seller') { %>class="current" <% } %>><a href="/admin/view-tutor">Manage tutor</a></li>
               </ul>
             </li>
           </ul><span class="heading">Overview</span>

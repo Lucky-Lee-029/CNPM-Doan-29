@@ -126,6 +126,41 @@ function captchaVerification(req, res, next) {
         return next();
     }
 }
+app.get('/admin/login', async(req, res, next) => {
+const categoryList = await guestModel.getListCategory();
+  res.render('admin-views/login', { 
+    title: 'Login page',
+    page_name: req.path,
+	catList: categoryList,
+	logged: false
+  });
+});
+app.get('/admin/logged', isLoggedIn, async(req, res) => {
+
+    const categoryList = await guestModel.getListCategory();
+	console.log(req.session.passport.user);
+    if (req.session.passport.user.role == 2) res.redirect('/admin/category');
+	app
+	{
+		res.redirect('/login');
+	}
+});
+
+app.post('/admin/login', passport.authenticate('local-login', {
+    successRedirect: '/admin/logged',
+    failureRedirect: '/admin/login',
+    failureFlash: true
+}));
+
+app.get('/admin', async(req, res, next) => {
+const categoryList = await guestModel.getListCategory();
+  res.render('admin-views/login', { 
+    title: 'Login page',
+    page_name: req.path,
+	catList: categoryList,
+	logged: false,
+  });
+});
 //Route
 app.use('/student', isLoggedIn, studentRouter);
 app.use('/admin', adminRouter);
